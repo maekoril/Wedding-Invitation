@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamille &amp; Irelyn — Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- shared symbols -->
+<svg class="assets" aria-hidden="true">
+  <symbol id="branch" viewBox="0 0 400 500" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M200 20 C170 90 210 140 190 210 C170 280 220 320 200 390 C185 440 210 470 200 495"/>
+    <path d="M195 90 C160 75 140 40 130 10" stroke-width="1.6"/>
+    <path d="M198 160 C235 145 250 105 255 70" stroke-width="1.6"/>
+    <path d="M188 240 C150 230 125 195 115 160" stroke-width="1.6"/>
+    <path d="M202 300 C240 288 262 250 268 215" stroke-width="1.6"/>
+    <path d="M192 370 C158 362 135 330 122 298" stroke-width="1.6"/>
+    <ellipse cx="140" cy="35" rx="14" ry="7" fill="currentColor" stroke="none" transform="rotate(-30 140 35)"/>
+    <ellipse cx="248" cy="85" rx="13" ry="6.5" fill="currentColor" stroke="none" transform="rotate(25 248 85)"/>
+    <ellipse cx="118" cy="175" rx="13" ry="6.5" fill="currentColor" stroke="none" transform="rotate(-25 118 175)"/>
+    <ellipse cx="262" cy="230" rx="13" ry="6.5" fill="currentColor" stroke="none" transform="rotate(20 262 230)"/>
+    <ellipse cx="126" cy="313" rx="12" ry="6" fill="currentColor" stroke="none" transform="rotate(-20 126 313)"/>
+  </symbol>
+  <symbol id="sprig" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M3 3 C7 18 16 24 26 22 C34 20 32 11 40 9"/>
+    <ellipse cx="15" cy="23" rx="4" ry="2.4" fill="currentColor" stroke="none" transform="rotate(-25 15 23)"/>
+    <ellipse cx="34" cy="12" rx="3.5" ry="2" fill="currentColor" stroke="none" transform="rotate(15 34 12)"/>
+  </symbol>
+</svg>
+
+<!-- ================= GATE ================= -->
+<div id="gate">
+  <svg class="bg-branch bg-branch--a" style="opacity:.14;color:var(--cream)"><use href="#branch"/></svg>
+  <svg class="bg-branch bg-branch--b" style="opacity:.1;color:var(--brown-tan)"><use href="#branch"/></svg>
+  <div class="gate-inner">
+    <div class="seal"><svg viewBox="0 0 24 24"><path d="M12 2c3 4 3 8 0 12-3-4-3-8 0-12zM4 14c4-1 7 1 8 5-4 1-7-1-8-5zM20 14c-4-1-7 1-8 5 4 1 7-1 8-5z"/></svg></div>
+    <p class="eyebrow" style="color:var(--brown-tan)">You are cordially invited to the wedding of</p>
+    <h1 class="names">Jamille &amp; Irelyn</h1>
+    <p class="date mono">22 · 09 · 2026</p>
+    <button class="btn btn--ondark" id="openBtn">Open Invitation</button>
+  </div>
+</div>
+
+<!-- ================= DOT NAV ================= -->
+<nav id="dotnav" aria-label="Section navigation">
+  <button data-target="hero" class="active" aria-label="Hero"></button>
+  <button data-target="parents" aria-label="Parents"></button>
+  <button data-target="countdown" aria-label="Countdown"></button>
+  <button data-target="schedule" aria-label="Schedule"></button>
+  <button data-target="gallery" aria-label="Gallery"></button>
+  <button data-target="map" aria-label="Map"></button>
+  <button data-target="rsvp" aria-label="RSVP"></button>
+  <button data-target="gift" aria-label="Gift Box"></button>
+  <button data-target="footerslide" aria-label="Closing"></button>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="slide slide--dark hero" id="hero" data-index="1">
+  <svg class="bg-branch bg-branch--a" style="color:var(--cream)"><use href="#branch"/></svg>
+  <svg class="bg-branch bg-branch--b" style="color:var(--brown-tan);opacity:.12"><use href="#branch"/></svg>
+  <div class="slide-inner">
+    <p class="eyebrow">Together with their families</p>
+    <h1 class="names">Jamille<span class="amp">&amp;</span>Irelyn</h1>
+    <p class="sub">TUESDAY, THE 22ND OF SEPTEMBER 2026 · TIAONG, QUEZON</p>
+    <div class="roles">
+      <span>Jamille Perona, the Groom</span>
+      <span class="amp2">&amp;</span>
+      <span>Irelyn Mote, the Bride</span>
+    </div>
+  </div>
+  <div class="scroll-cue"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brown-tan)" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></div>
+</section>
+
+<!-- ================= PARENTS ================= -->
+<section class="slide slide--cream texture" id="parents" data-index="2">
+  <svg class="bg-branch bg-branch--c" style="color:var(--green-sage)"><use href="#branch"/></svg>
+  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <div class="slide-inner reveal">
+    <p class="kicker"><span class="num">02</span> With the Blessing of Our Parents</p>
+    <div class="parents-grid">
+      <div>
+        <p class="who">Groom's Parents</p>
+        <p class="names">Mr. Charlie Perona &amp; Ms. Thelma Marquez</p>
+        <p class="place">Brgy. San Jose, San Pablo City, Laguna</p>
+      </div>
+      <div>
+        <p class="who">Bride's Parents</p>
+        <p class="names">Mr. Zosimo Mote &amp; Ms. Irene Mote</p>
+        <p class="place">Brgy. Anastacia, Tiaong, Quezon</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COUNTDOWN + CALENDAR ================= -->
+<section class="slide slide--tan" id="countdown" data-index="3">
+  <svg class="bg-branch bg-branch--a" style="color:var(--brown-bark)"><use href="#branch"/></svg>
+  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <div class="slide-inner reveal">
+    <p class="kicker"><span class="num">03</span> Counting Down</p>
+    <div class="countdown mono" id="countdownBoxes">
+      <div class="box"><div class="n" id="cdDays">00</div><div class="l">Days</div></div>
+      <div class="box"><div class="n" id="cdHours">00</div><div class="l">Hrs</div></div>
+      <div class="box"><div class="n" id="cdMins">00</div><div class="l">Min</div></div>
+      <div class="box"><div class="n" id="cdSecs">00</div><div class="l">Sec</div></div>
+    </div>
+    <div class="cal">
+      <p class="cal-head">September 2026</p>
+      <div class="cal-grid">
+        <div class="dow">Mo</div><div class="dow">Tu</div><div class="dow">We</div><div class="dow">Th</div><div class="dow">Fr</div><div class="dow">Sa</div><div class="dow">Su</div>
+        <div class="d">1</div><div class="d">2</div><div class="d">3</div><div class="d">4</div><div class="d">5</div><div class="d">6</div><div class="d">7</div>
+        <div class="d">8</div><div class="d">9</div><div class="d">10</div><div class="d">11</div><div class="d">12</div><div class="d">13</div><div class="d">14</div>
+        <div class="d">15</div><div class="d">16</div><div class="d">17</div><div class="d">18</div><div class="d">19</div><div class="d">20</div><div class="d">21</div>
+        <div class="d the-day">22</div><div class="d">23</div><div class="d">24</div><div class="d">25</div><div class="d">26</div><div class="d">27</div><div class="d">28</div>
+        <div class="d">29</div><div class="d">30</div>
+      </div>
+    </div>
+    <a class="btn btn--onlight" style="margin-top:22px;"
+       href="https://www.google.com/calendar/render?action=TEMPLATE&text=Jamille%20%26%20Irelyn%27s%20Wedding&dates=20260922T040000Z/20260922T070000Z&ctz=Asia%2FManila&details=Join%20us%20as%20we%20celebrate%20the%20wedding%20of%20Jamille%20Perona%20%26%20Irelyn%20Mote.&location=Joble-Mote%27s%20Residence%2C%20Sitio%20Sulukan%2C%20Brgy.%20Anastacia%2C%20Tiaong%2C%20Quezon"
+       target="_blank" rel="noopener">Add to Calendar</a>
+  </div>
+</section>
+
+<!-- ================= SCHEDULE ================= -->
+<section class="slide slide--cream texture" id="schedule" data-index="4">
+  <svg class="bg-branch bg-branch--d" style="color:var(--green-sage)"><use href="#branch"/></svg>
+  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <div class="slide-inner reveal">
+    <p class="kicker"><span class="num">04</span> Order of the Day</p>
+    <div class="card">
+      <div class="sched-card">
+        <p class="kind">Ceremony</p>
+        <p class="time">10:00 AM</p>
+        <p class="venue">Office of the Municipal Mayor</p>
+        <p class="addr">Tiaong, Quezon</p>
+      </div>
+      <div class="sched-card">
+        <p class="kind">Reception</p>
+        <p class="time">12:00 PM</p>
+        <p class="venue">Joble-Mote's Residence</p>
+        <p class="addr">Sitio Sulukan, Brgy. Anastacia, Tiaong, Quezon</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="slide slide--dark" id="gallery" data-index="5">
+  <svg class="bg-branch bg-branch--b" style="color:var(--cream)"><use href="#branch"/></svg>
+  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <div class="slide-inner reveal">
+    <p class="kicker"><span class="num">05</span> A Moment We Cherish</p>
+    <div class="photo-frame">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm2 12l4-5 3 3 4-6 5 8H6z"/></svg>
+      <span>Photo to be added</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAP ================= -->
+<section class="slide slide--cream texture" id="map" data-index="6">
+  <svg class="bg-branch bg-branch--c" style="color:var(--brown-bark)"><use href="#branch"/></svg>
+  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <div class="slide-inner reveal">
+    <p class="kicker"><span class="num">06</span> Find Us Here</p>
+    <div class="card map-card">
+      <iframe
+        src="https://www.google.com/maps?q=Joble-Mote%27s+Residence%2C+Sitio+Sulukan%2C+Brgy.+Anastacia%2C+Tiaong%2C+Quezon&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Reception venue map"></iframe>
+      <div class="map-foot">
+        <p class="venue-name">Joble-Mote's Residence</p>
+        <p class="venue-addr">Sitio Sulukan, Brgy. Anastacia, Tiaong, Quezon</p>
+        <a class="btn btn--onlight" style="padding:10px 22px;"
+           href="https://www.google.com/maps/search/?api=1&query=Joble-Mote%27s+Residence%2C+Sitio+Sulukan%2C+Brgy.+Anastacia%2C+Tiaong%2C+Quezon"
+           target="_blank" rel="noopener">Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RSVP + GUESTBOOK ================= -->
+<section class="slide slide--tan" id="rsvp" data-index="7">
+  <svg class="bg-branch bg-branch--a" style="color:var(--brown-bark)"><use href="#branch"/></svg>
+  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <div class="slide-inner reveal">
+    <p class="kicker"><span class="num">07</span> RSVP &amp; Well Wishes</p>
+    <h2 style="font-size:19px;font-weight:500;">Your presence is the greatest gift</h2>
+    <form class="rsvp-form" id="wishForm">
+      <div class="field"><label for="wName">Your Name</label><input type="text" id="wName" required></div>
+      <div class="field">
+        <label for="wAttend">Will you attend?</label>
+        <select id="wAttend"><option>Joyfully accepts</option><option>Regretfully declines</option></select>
+      </div>
+      <div class="field"><label for="wMsg">Leave a wish (optional)</label><textarea id="wMsg" placeholder="Write your message..."></textarea></div>
+      <button type="submit" class="btn btn--solid">Send Wishes</button>
+    </form>
+    <div class="wishes" id="wishList"><p class="wishes-empty" id="wishEmpty">No wishes yet. Be the first!</p></div>
+  </div>
+</section>
+
+<!-- ================= GIFT BOX ================= -->
+<section class="slide slide--cream texture" id="gift" data-index="8">
+  <svg class="bg-branch bg-branch--d" style="color:var(--green-sage)"><use href="#branch"/></svg>
+  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <div class="slide-inner reveal">
+    <p class="kicker"><span class="num">08</span> Gift Box</p>
+    <h2 style="font-size:19px;font-weight:500;">Send Your Blessing</h2>
+    <div class="gift-tabs">
+      <button class="gift-tab active" data-target="groom">Groom</button>
+      <button class="gift-tab" data-target="bride">Bride</button>
+    </div>
+    <div class="qr-box" id="qrBox">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 0h2v6h-6v-2h4v-4z"/></svg>
+      <span id="qrLabel">QR code for Jamille — placeholder</span>
+    </div>
+    <p class="gift-note">Connect a payment provider to generate a working QR before launch.</p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<section class="slide slide--dark" id="footerslide" data-index="9">
+  <svg class="bg-branch bg-branch--a" style="color:var(--cream)"><use href="#branch"/></svg>
+  <svg class="bg-branch bg-branch--b" style="color:var(--brown-tan);opacity:.12"><use href="#branch"/></svg>
+  <div class="slide-inner reveal">
+    <div class="footer-heart">♡</div>
+    <h2 style="font-size:24px;font-weight:400;font-style:italic;">With love,</h2>
+    <p class="footer-msg">Jamille &amp; Irelyn</p>
+  </div>
+</section>
+
+<script>
+  const html = document.documentElement;
+  html.classList.add('locked');
+
+  document.getElementById('openBtn').addEventListener('click', () => {
+    document.getElementById('gate').classList.add('closed');
+    html.classList.remove('locked');
+    html.classList.add('opened');
+  });
+
+  // ---- scroll reveal ----
+  const revealIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.reveal').forEach(el => revealIo.observe(el));
+
+  // ---- dot nav sync ----
+  const dots = document.querySelectorAll('#dotnav button');
+  const slides = document.querySelectorAll('.slide[data-index]');
+  const navIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        dots.forEach(d => d.classList.toggle('active', d.dataset.target === e.target.id));
+      }
+    });
+  }, { threshold: 0.55 });
+  slides.forEach(s => navIo.observe(s));
+  dots.forEach(d => d.addEventListener('click', () => {
+    document.getElementById(d.dataset.target).scrollIntoView({ behavior: 'smooth' });
+  }));
+
+  // ---- live countdown ----
+  const target = new Date('2026-09-22T10:00:00+08:00').getTime();
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      document.getElementById('countdownBoxes').innerHTML = '<div class="box" style="width:auto;padding:14px 22px;">🎉 Today\'s the day!</div>';
+      clearInterval(timer);
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cdDays').textContent = String(d).padStart(2,'0');
+    document.getElementById('cdHours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cdMins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cdSecs').textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  // ---- guestbook (front-end only mock — no persistence yet) ----
+  const wishForm = document.getElementById('wishForm');
+  const wishList = document.getElementById('wishList');
+  const wishEmpty = document.getElementById('wishEmpty');
+  wishForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('wName').value.trim();
+    const attend = document.getElementById('wAttend').value;
+    const msg = document.getElementById('wMsg').value.trim();
+    if (!name) return;
+    wishEmpty.style.display = 'none';
+    const el = document.createElement('div');
+    el.className = 'wish';
+    el.innerHTML = `<div class="who">${name} · <span style="font-weight:400;opacity:.7">${attend}</span></div>` + (msg ? `<div class="msg">${msg}</div>` : '');
+    wishList.insertBefore(el, wishList.firstChild.nextSibling);
+    wishForm.reset();
+  });
+
+  // ---- gift box tabs ----
+  const tabs = document.querySelectorAll('.gift-tab');
+  const qrLabel = document.getElementById('qrLabel');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    qrLabel.textContent = `QR code for ${tab.dataset.target === 'groom' ? 'Jamille' : 'Irelyn'} — placeholder`;
+  }));
+</script>
+
+</body>
+</html>
