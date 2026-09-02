@@ -15,7 +15,7 @@ html,body{ margin:0; height:100%; }
 html{ scroll-behavior:smooth; }
 html.locked, html.locked body{ overflow:hidden; }
 html.opened{ scroll-snap-type: y proximity; }
-body{ background:var(--forest); font-family:'Jost',sans-serif; color:var(--ivory); }
+body{ background:var(--forest); font-family:'Jost',sans-serif; color:var(--ivory); -webkit-tap-highlight-color: transparent;}
 
 /* hide native scrollbars — dot nav is the visual scroll indicator */
 html, .slide-inner, .wishes, .carousel-track{
