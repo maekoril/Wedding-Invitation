@@ -197,12 +197,18 @@
     <p class="kicker"><span class="num">05</span> A Moment We Cherish</p>
     <div class="gallery-carousel">
       <div class="carousel-track" id="carouselTrack">
-        <img src="images/image-1.png" alt="Jamille and Irelyn — photo 1" loading="lazy">
-        <img src="images/image-2.png" alt="Jamille and Irelyn — photo 2" loading="lazy">
-        <img src="images/image-3.png" alt="Jamille and Irelyn — photo 3" loading="lazy">
-        <img src="images/image-4.png" alt="Jamille and Irelyn — photo 4" loading="lazy">
-        <img src="images/image-5.png" alt="Jamille and Irelyn — photo 5" loading="lazy">
-        <img src="images/image-6.png" alt="Jamille and Irelyn — photo 6" loading="lazy">
+        <div class="carousel-card"><img src="images/image-1.png" alt="Jamille and Irelyn — photo 1" loading="lazy"></div>
+        <div class="carousel-card"><img src="images/image-2.png" alt="Jamille and Irelyn — photo 2" loading="lazy"></div>
+        <div class="carousel-card"><img src="images/image-3.png" alt="Jamille and Irelyn — photo 3" loading="lazy"></div>
+        <div class="carousel-card"><img src="images/image-4.png" alt="Jamille and Irelyn — photo 4" loading="lazy"></div>
+        <div class="carousel-card"><img src="images/image-5.png" alt="Jamille and Irelyn — photo 5" loading="lazy"></div>
+        <div class="carousel-card"><img src="images/image-6.png" alt="Jamille and Irelyn — photo 6" loading="lazy"></div>
+        <div class="carousel-card" aria-hidden="true"><img src="images/image-1.png" alt="" loading="lazy"></div>
+        <div class="carousel-card" aria-hidden="true"><img src="images/image-2.png" alt="" loading="lazy"></div>
+        <div class="carousel-card" aria-hidden="true"><img src="images/image-3.png" alt="" loading="lazy"></div>
+        <div class="carousel-card" aria-hidden="true"><img src="images/image-4.png" alt="" loading="lazy"></div>
+        <div class="carousel-card" aria-hidden="true"><img src="images/image-5.png" alt="" loading="lazy"></div>
+        <div class="carousel-card" aria-hidden="true"><img src="images/image-6.png" alt="" loading="lazy"></div>
       </div>
       <button class="carousel-arrow prev" id="carouselPrev" aria-label="Previous photo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
@@ -274,11 +280,18 @@
       <button class="gift-tab active" data-target="groom">Groom</button>
       <button class="gift-tab" data-target="bride">Bride</button>
     </div>
-    <div class="qr-box" id="qrBox">
+    <button class="qr-box" id="qrBox" aria-label="Tap to enlarge the payment QR code">
       <img id="qrImage" src="qr/husband.jpg" alt="Payment QR code for Jamille">
-    </div>
+    </button>
+    <p class="gift-note">Tap the QR to view it up close</p>
   </div>
 </section>
+
+<!-- ================= QR LIGHTBOX ================= -->
+<div class="lightbox" id="qrLightbox" aria-hidden="true">
+  <button class="lightbox-close" id="qrLightboxClose" aria-label="Close">&times;</button>
+  <img id="qrLightboxImg" src="" alt="">
+</div>
 
 <!-- ================= FOOTER ================= -->
 <section class="slide slide--dark" id="footerslide" data-index="9">
@@ -368,36 +381,119 @@
   // ---- gift box tabs ----
   const tabs = document.querySelectorAll('.gift-tab');
   const qrImage = document.getElementById('qrImage');
+  const qrBox = document.getElementById('qrBox');
   tabs.forEach(tab => tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const isGroom = tab.dataset.target === 'groom';
     qrImage.src = isGroom ? 'qr/husband.jpg' : 'qr/wife.jpg';
     qrImage.alt = `Payment QR code for ${isGroom ? 'Jamille' : 'Irelyn'}`;
+    qrBox.setAttribute('aria-label', `Tap to enlarge the payment QR code for ${isGroom ? 'Jamille' : 'Irelyn'}`);
   }));
 
-  // ---- gallery carousel ----
+  // ---- QR lightbox ----
+  const qrLightbox = document.getElementById('qrLightbox');
+  const qrLightboxImg = document.getElementById('qrLightboxImg');
+  const qrLightboxClose = document.getElementById('qrLightboxClose');
+  function openQrLightbox() {
+    qrLightboxImg.src = qrImage.src;
+    qrLightboxImg.alt = qrImage.alt;
+    qrLightbox.classList.add('open');
+    qrLightbox.setAttribute('aria-hidden', 'false');
+  }
+  function closeQrLightbox() {
+    qrLightbox.classList.remove('open');
+    qrLightbox.setAttribute('aria-hidden', 'true');
+  }
+  qrBox.addEventListener('click', openQrLightbox);
+  qrLightboxClose.addEventListener('click', closeQrLightbox);
+  qrLightbox.addEventListener('click', (e) => { if (e.target === qrLightbox) closeQrLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeQrLightbox(); });
+
+  // ---- gallery carousel (card style, continuous auto-scroll) ----
   const track = document.getElementById('carouselTrack');
+  const allCardEls = Array.from(track.querySelectorAll('.carousel-card'));
+  const cards = allCardEls.filter(c => !c.hasAttribute('aria-hidden'));
+  const cloneCards = allCardEls.filter(c => c.hasAttribute('aria-hidden'));
   const dotButtons = document.querySelectorAll('#carouselDots button');
-  const slideCount = track.children.length;
+  const gallerySection = document.getElementById('gallery');
+  const slideCount = cards.length;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function currentSlide() {
+    const center = track.scrollLeft + track.clientWidth / 2;
+    let closest = 0, minDist = Infinity;
+    cards.forEach((card, idx) => {
+      const dist = Math.abs(center - (card.offsetLeft + card.clientWidth / 2));
+      if (dist < minDist) { minDist = dist; closest = idx; }
+    });
+    return closest;
+  }
   function goToSlide(i) {
     i = Math.max(0, Math.min(slideCount - 1, i));
-    track.scrollTo({ left: track.clientWidth * i, behavior: 'smooth' });
+    const card = cards[i];
+    const target = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+    track.scrollTo({ left: target, behavior: 'smooth' });
   }
-  function currentSlide() {
-    return Math.round(track.scrollLeft / track.clientWidth);
+  function refreshCarouselUI() {
+    const rect = track.getBoundingClientRect();
+    const viewCenter = rect.left + rect.width / 2;
+    allCardEls.forEach(card => {
+      const cRect = card.getBoundingClientRect();
+      const dist = Math.abs(viewCenter - (cRect.left + cRect.width / 2));
+      const t = Math.min(dist / (rect.width / 2), 1);
+      card.style.transform = `scale(${1 - t * 0.12})`;
+      card.style.opacity = String(1 - t * 0.45);
+    });
+    const active = currentSlide();
+    dotButtons.forEach((d, idx) => d.classList.toggle('active', idx === active));
   }
-  document.getElementById('carouselPrev').addEventListener('click', () => goToSlide(currentSlide() - 1));
-  document.getElementById('carouselNext').addEventListener('click', () => goToSlide(currentSlide() + 1));
-  dotButtons.forEach((d, i) => d.addEventListener('click', () => goToSlide(i)));
-  let scrollTimer;
+
+  // the point at which the track has scrolled exactly one full set of
+  // real cards — used to wrap scrollLeft back seamlessly into the clones
+  let loopWidth = cloneCards.length ? (cloneCards[0].offsetLeft - cards[0].offsetLeft) : 0;
+
+  document.getElementById('carouselPrev').addEventListener('click', () => { goToSlide(currentSlide() - 1); pauseThenResume(); });
+  document.getElementById('carouselNext').addEventListener('click', () => { goToSlide(currentSlide() + 1); pauseThenResume(); });
+  dotButtons.forEach((d, i) => d.addEventListener('click', () => { goToSlide(i); pauseThenResume(); }));
+  track.addEventListener('pointerdown', pauseThenResume);
+  track.addEventListener('mouseenter', () => { hovering = true; });
+  track.addEventListener('mouseleave', () => { hovering = false; });
+
+  let scrollRaf;
   track.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => {
-      const i = currentSlide();
-      dotButtons.forEach((d, idx) => d.classList.toggle('active', idx === i));
-    }, 80);
+    cancelAnimationFrame(scrollRaf);
+    scrollRaf = requestAnimationFrame(refreshCarouselUI);
   });
+  window.addEventListener('resize', () => {
+    loopWidth = cloneCards.length ? (cloneCards[0].offsetLeft - cards[0].offsetLeft) : 0;
+    refreshCarouselUI();
+  });
+  refreshCarouselUI();
+
+  // continuous ticker-style glide: nudges scrollLeft a fraction of a
+  // pixel every frame, and wraps seamlessly into the duplicated cards
+  let galleryInView = false, hovering = false, userPaused = false, resumeTimer;
+  const GLIDE_SPEED = 0.4; // px per frame, roughly 24px/second
+  function glide() {
+    if (!reduceMotion && galleryInView && !hovering && !userPaused && loopWidth > 0) {
+      track.scrollLeft += GLIDE_SPEED;
+      if (track.scrollLeft >= loopWidth) track.scrollLeft -= loopWidth;
+    }
+    requestAnimationFrame(glide);
+  }
+  requestAnimationFrame(glide);
+
+  function pauseThenResume() {
+    userPaused = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { userPaused = false; }, 5000);
+  }
+
+  const galleryIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => { galleryInView = e.isIntersecting; });
+  }, { threshold: 0.4 });
+  galleryIo.observe(gallerySection);
 </script>
 
 </body>
