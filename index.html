@@ -6,43 +6,80 @@
 <title>Jamille &amp; Irelyn — Wedding Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <!-- shared symbols -->
 <svg class="assets" aria-hidden="true">
-  <symbol id="branch" viewBox="0 0 400 500" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M200 20 C170 90 210 140 190 210 C170 280 220 320 200 390 C185 440 210 470 200 495"/>
-    <path d="M195 90 C160 75 140 40 130 10" stroke-width="1.6"/>
-    <path d="M198 160 C235 145 250 105 255 70" stroke-width="1.6"/>
-    <path d="M188 240 C150 230 125 195 115 160" stroke-width="1.6"/>
-    <path d="M202 300 C240 288 262 250 268 215" stroke-width="1.6"/>
-    <path d="M192 370 C158 362 135 330 122 298" stroke-width="1.6"/>
-    <ellipse cx="140" cy="35" rx="14" ry="7" fill="currentColor" stroke="none" transform="rotate(-30 140 35)"/>
-    <ellipse cx="248" cy="85" rx="13" ry="6.5" fill="currentColor" stroke="none" transform="rotate(25 248 85)"/>
-    <ellipse cx="118" cy="175" rx="13" ry="6.5" fill="currentColor" stroke="none" transform="rotate(-25 118 175)"/>
-    <ellipse cx="262" cy="230" rx="13" ry="6.5" fill="currentColor" stroke="none" transform="rotate(20 262 230)"/>
-    <ellipse cx="126" cy="313" rx="12" ry="6" fill="currentColor" stroke="none" transform="rotate(-20 126 313)"/>
+  <symbol id="bloom" viewBox="0 0 120 120">
+    <g class="petal-a" transform="rotate(0 60 60)"><path d="M60,60 C48,42 48,14 60,6 C72,14 72,42 60,60 Z"/></g>
+    <g class="petal-b" transform="rotate(60 60 60)"><path d="M60,60 C48,42 48,14 60,6 C72,14 72,42 60,60 Z"/></g>
+    <g class="petal-c" transform="rotate(120 60 60)"><path d="M60,60 C48,42 48,14 60,6 C72,14 72,42 60,60 Z"/></g>
+    <g class="petal-a" transform="rotate(180 60 60)"><path d="M60,60 C48,42 48,14 60,6 C72,14 72,42 60,60 Z"/></g>
+    <g class="petal-b" transform="rotate(240 60 60)"><path d="M60,60 C48,42 48,14 60,6 C72,14 72,42 60,60 Z"/></g>
+    <g class="petal-c" transform="rotate(300 60 60)"><path d="M60,60 C48,42 48,14 60,6 C72,14 72,42 60,60 Z"/></g>
+    <circle class="bloom-center" cx="60" cy="60" r="7"/>
   </symbol>
-  <symbol id="sprig" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="1.5">
-    <path d="M3 3 C7 18 16 24 26 22 C34 20 32 11 40 9"/>
-    <ellipse cx="15" cy="23" rx="4" ry="2.4" fill="currentColor" stroke="none" transform="rotate(-25 15 23)"/>
-    <ellipse cx="34" cy="12" rx="3.5" ry="2" fill="currentColor" stroke="none" transform="rotate(15 34 12)"/>
+
+  <symbol id="heartmark" viewBox="0 0 100 90">
+    <path d="M50,85 C10,60 0,35 18,18 C32,4 48,10 50,28 C52,10 68,4 82,18 C100,35 90,60 50,85 Z"/>
+  </symbol>
+
+  <symbol id="floral" viewBox="0 0 160 160">
+    <defs>
+      <radialGradient id="petGradOuter" cx="32%" cy="28%" r="80%">
+        <stop offset="0%" class="stop-tan"/>
+        <stop offset="100%" class="stop-honey"/>
+      </radialGradient>
+      <radialGradient id="petGradInner" cx="32%" cy="28%" r="80%">
+        <stop offset="0%" class="stop-honey"/>
+        <stop offset="100%" class="stop-bark"/>
+      </radialGradient>
+    </defs>
+    <path class="floral-leaf" d="M42,118 C20,106 16,80 32,58 C36,84 39,101 42,118 Z"/>
+    <path class="floral-leaf" d="M118,112 C140,98 142,72 126,52 C124,78 121,96 118,112 Z"/>
+    <g transform="translate(80,72)">
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(0) translate(31,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(51.4) translate(31,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(102.8) translate(31,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(154.2) translate(31,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(205.6) translate(31,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(257) translate(31,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(308.4) translate(31,0)"/>
+      <ellipse class="petal-inner" rx="17" ry="11" transform="rotate(26) translate(17,0)"/>
+      <ellipse class="petal-inner" rx="17" ry="11" transform="rotate(98) translate(17,0)"/>
+      <ellipse class="petal-inner" rx="17" ry="11" transform="rotate(170) translate(17,0)"/>
+      <ellipse class="petal-inner" rx="17" ry="11" transform="rotate(242) translate(17,0)"/>
+      <ellipse class="petal-inner" rx="17" ry="11" transform="rotate(314) translate(17,0)"/>
+      <circle class="floral-center" r="8"/>
+    </g>
+    <g transform="translate(34,42) scale(.48)">
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(0) translate(29,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(72) translate(29,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(144) translate(29,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(216) translate(29,0)"/>
+      <ellipse class="petal-outer" rx="27" ry="17" transform="rotate(288) translate(29,0)"/>
+      <circle class="floral-center" r="10"/>
+    </g>
   </symbol>
 </svg>
 
 <!-- ================= GATE ================= -->
 <div id="gate">
-  <svg class="bg-branch bg-branch--a" style="opacity:.14;color:var(--cream)"><use href="#branch"/></svg>
-  <svg class="bg-branch bg-branch--b" style="opacity:.1;color:var(--brown-tan)"><use href="#branch"/></svg>
+  <svg class="signature-bloom" viewBox="0 0 120 120" aria-hidden="true"><use href="#bloom"/></svg>
   <div class="gate-inner">
-    <div class="seal"><svg viewBox="0 0 24 24"><path d="M12 2c3 4 3 8 0 12-3-4-3-8 0-12zM4 14c4-1 7 1 8 5-4 1-7-1-8-5zM20 14c-4-1-7 1-8 5 4 1 7-1 8-5z"/></svg></div>
-    <p class="eyebrow" style="color:var(--brown-tan)">You are cordially invited to the wedding of</p>
-    <h1 class="names">Jamille &amp; Irelyn</h1>
-    <p class="date mono">22 · 09 · 2026</p>
-    <button class="btn btn--ondark" id="openBtn">Open Invitation</button>
+    <p class="eyebrow">You are cordially invited to the wedding of</p>
+
+    <button class="envelope" id="envelope" aria-label="Open the invitation">
+      <span class="env-card"></span>
+      <span class="env-body"></span>
+      <span class="env-flap"></span>
+      <span class="env-seal"><span class="seal-mono">J<span class="seal-amp">&middot;</span>I</span></span>
+    </button>
+
+    <p class="tap-hint mono">Tap to open</p>
   </div>
 </div>
 
@@ -61,25 +98,28 @@
 
 <!-- ================= HERO ================= -->
 <section class="slide slide--dark hero" id="hero" data-index="1">
-  <svg class="bg-branch bg-branch--a" style="color:var(--cream)"><use href="#branch"/></svg>
-  <svg class="bg-branch bg-branch--b" style="color:var(--brown-tan);opacity:.12"><use href="#branch"/></svg>
-  <div class="slide-inner">
-    <p class="eyebrow">Together with their families</p>
-    <h1 class="names">Jamille<span class="amp">&amp;</span>Irelyn</h1>
-    <p class="sub">TUESDAY, THE 22ND OF SEPTEMBER 2026 · TIAONG, QUEZON</p>
-    <div class="roles">
-      <span>Jamille Perona, the Groom</span>
-      <span class="amp2">&amp;</span>
-      <span>Irelyn Mote, the Bride</span>
+  <div class="slide-inner content">
+    <div class="hero-frame">
+      <svg class="signature-bloom top-mini" viewBox="0 0 120 120" aria-hidden="true"><use href="#bloom"/></svg>
+      <p class="eyebrow">Together with their families</p>
+      <h1 class="names">Jamille<span class="amp">&amp;</span>Irelyn</h1>
+      <p class="sub mono">TUESDAY, THE 22ND OF SEPTEMBER 2026<br>TIAONG, QUEZON</p>
+      <div class="roles">
+        <span>Jamille Perona, the Groom</span>
+        <span class="amp2">&amp;</span>
+        <span>Irelyn Mote, the Bride</span>
+      </div>
+      <svg class="signature-bloom frame-bl" viewBox="0 0 120 120" aria-hidden="true"><use href="#bloom"/></svg>
+      <svg class="signature-bloom frame-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#bloom"/></svg>
     </div>
   </div>
-  <div class="scroll-cue"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brown-tan)" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></div>
+  <div class="scroll-cue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg></div>
 </section>
 
 <!-- ================= PARENTS ================= -->
 <section class="slide slide--cream texture" id="parents" data-index="2">
-  <svg class="bg-branch bg-branch--c" style="color:var(--green-sage)"><use href="#branch"/></svg>
-  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <svg class="signature-floral pos-tl" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
+  <svg class="signature-heart pos-br" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
     <p class="kicker"><span class="num">02</span> With the Blessing of Our Parents</p>
     <div class="parents-grid">
@@ -99,8 +139,8 @@
 
 <!-- ================= COUNTDOWN + CALENDAR ================= -->
 <section class="slide slide--tan" id="countdown" data-index="3">
-  <svg class="bg-branch bg-branch--a" style="color:var(--brown-bark)"><use href="#branch"/></svg>
-  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <svg class="signature-floral pos-tr" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
+  <svg class="signature-heart pos-bl" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
     <p class="kicker"><span class="num">03</span> Counting Down</p>
     <div class="countdown mono" id="countdownBoxes">
@@ -128,20 +168,20 @@
 
 <!-- ================= SCHEDULE ================= -->
 <section class="slide slide--cream texture" id="schedule" data-index="4">
-  <svg class="bg-branch bg-branch--d" style="color:var(--green-sage)"><use href="#branch"/></svg>
-  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <svg class="signature-floral pos-tl" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
+  <svg class="signature-heart pos-br" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
     <p class="kicker"><span class="num">04</span> Order of the Day</p>
     <div class="card">
       <div class="sched-card">
         <p class="kind">Ceremony</p>
-        <p class="time">10:00 AM</p>
+        <p class="time mono">10:00 AM</p>
         <p class="venue">Office of the Municipal Mayor</p>
         <p class="addr">Tiaong, Quezon</p>
       </div>
       <div class="sched-card">
         <p class="kind">Reception</p>
-        <p class="time">12:00 PM</p>
+        <p class="time mono">12:00 PM</p>
         <p class="venue">Joble-Mote's Residence</p>
         <p class="addr">Sitio Sulukan, Brgy. Anastacia, Tiaong, Quezon</p>
       </div>
@@ -151,21 +191,41 @@
 
 <!-- ================= GALLERY ================= -->
 <section class="slide slide--dark" id="gallery" data-index="5">
-  <svg class="bg-branch bg-branch--b" style="color:var(--cream)"><use href="#branch"/></svg>
-  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <svg class="signature-floral pos-tr" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
+  <svg class="signature-heart pos-bl" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
     <p class="kicker"><span class="num">05</span> A Moment We Cherish</p>
-    <div class="photo-frame">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm2 12l4-5 3 3 4-6 5 8H6z"/></svg>
-      <span>Photo to be added</span>
+    <div class="gallery-carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <img src="images/image-1.png" alt="Jamille and Irelyn — photo 1" loading="lazy">
+        <img src="images/image-2.png" alt="Jamille and Irelyn — photo 2" loading="lazy">
+        <img src="images/image-3.png" alt="Jamille and Irelyn — photo 3" loading="lazy">
+        <img src="images/image-4.png" alt="Jamille and Irelyn — photo 4" loading="lazy">
+        <img src="images/image-5.png" alt="Jamille and Irelyn — photo 5" loading="lazy">
+        <img src="images/image-6.png" alt="Jamille and Irelyn — photo 6" loading="lazy">
+      </div>
+      <button class="carousel-arrow prev" id="carouselPrev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="carousel-arrow next" id="carouselNext" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="carousel-dots" id="carouselDots">
+        <button class="active" aria-label="Photo 1"></button>
+        <button aria-label="Photo 2"></button>
+        <button aria-label="Photo 3"></button>
+        <button aria-label="Photo 4"></button>
+        <button aria-label="Photo 5"></button>
+        <button aria-label="Photo 6"></button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ================= MAP ================= -->
 <section class="slide slide--cream texture" id="map" data-index="6">
-  <svg class="bg-branch bg-branch--c" style="color:var(--brown-bark)"><use href="#branch"/></svg>
-  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <svg class="signature-floral pos-tl" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
+  <svg class="signature-heart pos-br" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
     <p class="kicker"><span class="num">06</span> Find Us Here</p>
     <div class="card map-card">
@@ -185,11 +245,11 @@
 
 <!-- ================= RSVP + GUESTBOOK ================= -->
 <section class="slide slide--tan" id="rsvp" data-index="7">
-  <svg class="bg-branch bg-branch--a" style="color:var(--brown-bark)"><use href="#branch"/></svg>
-  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <svg class="signature-floral pos-tr" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
+  <svg class="signature-heart pos-bl" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
     <p class="kicker"><span class="num">07</span> RSVP &amp; Well Wishes</p>
-    <h2 style="font-size:19px;font-weight:500;">Your presence is the greatest gift</h2>
+    <h2 style="font-size:20px;font-style:italic;font-weight:500;">Your presence is the greatest gift</h2>
     <form class="rsvp-form" id="wishForm">
       <div class="field"><label for="wName">Your Name</label><input type="text" id="wName" required></div>
       <div class="field">
@@ -205,30 +265,26 @@
 
 <!-- ================= GIFT BOX ================= -->
 <section class="slide slide--cream texture" id="gift" data-index="8">
-  <svg class="bg-branch bg-branch--d" style="color:var(--green-sage)"><use href="#branch"/></svg>
-  <svg class="corner-sprig"><use href="#sprig"/></svg>
+  <svg class="signature-floral pos-tl" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
+  <svg class="signature-heart pos-br" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
     <p class="kicker"><span class="num">08</span> Gift Box</p>
-    <h2 style="font-size:19px;font-weight:500;">Send Your Blessing</h2>
+    <h2 style="font-size:20px;font-style:italic;font-weight:500;">Send Your Blessing</h2>
     <div class="gift-tabs">
       <button class="gift-tab active" data-target="groom">Groom</button>
       <button class="gift-tab" data-target="bride">Bride</button>
     </div>
     <div class="qr-box" id="qrBox">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 0h2v6h-6v-2h4v-4z"/></svg>
-      <span id="qrLabel">QR code for Jamille — placeholder</span>
+      <img id="qrImage" src="qr/husband.jpg" alt="Payment QR code for Jamille">
     </div>
-    <p class="gift-note">Connect a payment provider to generate a working QR before launch.</p>
   </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 <section class="slide slide--dark" id="footerslide" data-index="9">
-  <svg class="bg-branch bg-branch--a" style="color:var(--cream)"><use href="#branch"/></svg>
-  <svg class="bg-branch bg-branch--b" style="color:var(--brown-tan);opacity:.12"><use href="#branch"/></svg>
   <div class="slide-inner reveal">
-    <div class="footer-heart">♡</div>
-    <h2 style="font-size:24px;font-weight:400;font-style:italic;">With love,</h2>
+    <div class="footer-heart">&#9825;</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;font-style:italic;color:var(--ivory);">With love,</h2>
     <p class="footer-msg">Jamille &amp; Irelyn</p>
   </div>
 </section>
@@ -237,10 +293,16 @@
   const html = document.documentElement;
   html.classList.add('locked');
 
-  document.getElementById('openBtn').addEventListener('click', () => {
-    document.getElementById('gate').classList.add('closed');
-    html.classList.remove('locked');
-    html.classList.add('opened');
+  // ---- envelope open ----
+  const envelope = document.getElementById('envelope');
+  envelope.addEventListener('click', () => {
+    if (envelope.classList.contains('opening')) return;
+    envelope.classList.add('opening');
+    setTimeout(() => {
+      document.getElementById('gate').classList.add('closed');
+      html.classList.remove('locked');
+      html.classList.add('opened');
+    }, 950);
   });
 
   // ---- scroll reveal ----
@@ -298,19 +360,44 @@
     wishEmpty.style.display = 'none';
     const el = document.createElement('div');
     el.className = 'wish';
-    el.innerHTML = `<div class="who">${name} · <span style="font-weight:400;opacity:.7">${attend}</span></div>` + (msg ? `<div class="msg">${msg}</div>` : '');
+    el.innerHTML = `<div class="who">${name} &middot; <span style="font-weight:400;opacity:.7">${attend}</span></div>` + (msg ? `<div class="msg">${msg}</div>` : '');
     wishList.insertBefore(el, wishList.firstChild.nextSibling);
     wishForm.reset();
   });
 
   // ---- gift box tabs ----
   const tabs = document.querySelectorAll('.gift-tab');
-  const qrLabel = document.getElementById('qrLabel');
+  const qrImage = document.getElementById('qrImage');
   tabs.forEach(tab => tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    qrLabel.textContent = `QR code for ${tab.dataset.target === 'groom' ? 'Jamille' : 'Irelyn'} — placeholder`;
+    const isGroom = tab.dataset.target === 'groom';
+    qrImage.src = isGroom ? 'qr/husband.jpg' : 'qr/wife.jpg';
+    qrImage.alt = `Payment QR code for ${isGroom ? 'Jamille' : 'Irelyn'}`;
   }));
+
+  // ---- gallery carousel ----
+  const track = document.getElementById('carouselTrack');
+  const dotButtons = document.querySelectorAll('#carouselDots button');
+  const slideCount = track.children.length;
+  function goToSlide(i) {
+    i = Math.max(0, Math.min(slideCount - 1, i));
+    track.scrollTo({ left: track.clientWidth * i, behavior: 'smooth' });
+  }
+  function currentSlide() {
+    return Math.round(track.scrollLeft / track.clientWidth);
+  }
+  document.getElementById('carouselPrev').addEventListener('click', () => goToSlide(currentSlide() - 1));
+  document.getElementById('carouselNext').addEventListener('click', () => goToSlide(currentSlide() + 1));
+  dotButtons.forEach((d, i) => d.addEventListener('click', () => goToSlide(i)));
+  let scrollTimer;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const i = currentSlide();
+      dotButtons.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    }, 80);
+  });
 </script>
 
 </body>
