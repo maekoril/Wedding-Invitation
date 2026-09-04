@@ -1,11 +1,13 @@
 :root{
-  --forest:      #1F3328;
-  --forest-deep: #142219;
+  --forest:       #B7CBB0;
+  --forest-light: #E7F0E3;
+  --forest-deep:  #2F4633;
   --honey:       #B8823E;
   --bark:        #5C3D28;
   --tan:         #D3B482;
   --tan-bg:      #E9D7AE;
   --ivory:       #FBF3E4;
+  --ivory-deep:  #F0E2C4;
   --white:       #FFFFFF;
   --ease: cubic-bezier(.22,1,.36,1);
 }
@@ -16,7 +18,7 @@ html.locked, html.locked body{ overflow:hidden; }
 /* scroll-snap removed: the .book wrapper below is pinned and driven by
    GSAP ScrollTrigger, which owns scroll physics for that region now.
    Native snap + scroll-behavior:smooth both fight the scrub and were dropped. */
-body{ background:var(--forest); font-family:'Jost',sans-serif; color:var(--ivory); -webkit-tap-highlight-color: transparent;}
+body{ background:var(--forest); font-family:'Noto Serif',serif; font-stretch:62.5%; color:var(--ivory); -webkit-tap-highlight-color: transparent;}
 
 /* hide native scrollbars — dot nav is the visual scroll indicator */
 html, .slide-inner, .wishes, .carousel-track{
@@ -30,13 +32,13 @@ html::-webkit-scrollbar,
   display: none;
 }
 
-h1,h2{ font-family:'Cormorant Garamond',serif; margin:0; }
+h1,h2{ font-family:'Niconne',cursive; font-weight:400; margin:0; }
 .mono{ font-family:'Space Mono',monospace; }
 .script{ font-family:'Beau Rivage',cursive; }
 
 .eyebrow{
-  font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500;
-  font-size:17px; line-height:1.4; margin:0 0 26px; color:var(--tan);
+  font-family:'Niconne',cursive; font-weight:400;
+  font-size:19px; line-height:1.4; margin:0 0 26px; color:var(--forest-deep);
 }
 .kicker{
   display:flex; align-items:center; justify-content:center; gap:10px;
@@ -44,17 +46,17 @@ h1,h2{ font-family:'Cormorant Garamond',serif; margin:0; }
   margin-bottom:26px; opacity:.85;
 }
 .kicker .num{ font-family:'Space Mono',monospace; font-size:11px; color:var(--honey); }
-.kicker .num::after{ content:"/09"; opacity:.55; margin-left:2px; color:inherit; }
+.kicker .num::after{ content:"/10"; opacity:.55; margin-left:2px; color:inherit; }
 
 .btn{
   display:inline-block; padding:14px 32px; text-decoration:none; font-size:12px;
   letter-spacing:.12em; text-transform:uppercase; font-weight:500; border-radius:999px;
-  border:1.4px solid currentColor; cursor:pointer; font-family:'Jost',sans-serif; background:none;
+  border:1.4px solid currentColor; cursor:pointer; font-family:'Noto Serif',serif; font-stretch:62.5%; background:none;
   transition:transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
 }
 .btn:focus-visible{ outline:2px solid currentColor; outline-offset:3px; }
 .btn--onlight{ color:var(--bark); }
-.btn--onlight:hover{ background:var(--forest); border-color:var(--forest); color:var(--ivory); transform:translateY(-2px); }
+.btn--onlight:hover{ background:var(--forest-deep); border-color:var(--forest-deep); color:var(--ivory); transform:translateY(-2px); }
 .btn--solid{ background:var(--honey); border-color:var(--honey); color:var(--forest-deep); }
 .btn--solid:hover{ background:var(--bark); border-color:var(--bark); color:var(--ivory); transform:translateY(-2px); }
 
@@ -63,7 +65,7 @@ svg.assets{ position:absolute; width:0; height:0; }
 .petal-a path{ fill:var(--bark); opacity:.85; }
 .petal-b path{ fill:var(--tan); opacity:.65; }
 .petal-c path{ fill:var(--honey); opacity:.5; }
-.bloom-center{ fill:var(--forest); stroke:var(--honey); stroke-width:1; }
+.bloom-center{ fill:var(--forest-deep); stroke:var(--honey); stroke-width:1; }
 .signature-bloom{ position:absolute; pointer-events:none; z-index:0; }
 
 /* ---------------- richer ornament: gradient floral cluster + heart ---------------- */
@@ -73,7 +75,7 @@ svg.assets{ position:absolute; width:0; height:0; }
 .petal-outer{ fill:url(#petGradOuter); }
 .petal-inner{ fill:url(#petGradInner); }
 .floral-center{ fill:var(--forest-deep); }
-.floral-leaf{ fill:var(--forest); opacity:.85; }
+.floral-leaf{ fill:var(--forest-deep); opacity:.85; }
 .heartmark path{ fill:var(--bark); }
 
 .signature-floral{ position:absolute; pointer-events:none; z-index:0; width:92px; opacity:.92; }
@@ -120,9 +122,9 @@ svg.assets{ position:absolute; width:0; height:0; }
   overflow:hidden; text-align:center;
 }
 .slide-inner{ position:relative; z-index:2; max-width:440px; width:100%; max-height:100%; overflow-y:hidden; }
-.slide--dark{ background:radial-gradient(90% 70% at 50% 38%, var(--forest) 0%, var(--forest-deep) 100%); color:var(--ivory); }
-.slide--cream{ background:var(--ivory); color:var(--forest-deep); }
-.slide--tan{ background:var(--tan-bg); color:var(--forest-deep); }
+.slide--dark{ background:radial-gradient(90% 70% at 50% 38%, var(--forest-light) 0%, var(--forest) 100%); color:var(--forest-deep); }
+.slide--cream{ background:radial-gradient(90% 70% at 50% 38%, var(--ivory) 0%, var(--ivory-deep) 100%); color:var(--forest-deep); }
+.slide--tan{ background:radial-gradient(90% 70% at 50% 38%, var(--tan-bg) 0%, var(--tan) 100%); color:var(--forest-deep); }
 
 .card{ background:var(--white); border-radius:8px; padding:26px; box-shadow:0 24px 48px -20px rgba(31,51,40,.28); }
 
@@ -148,14 +150,14 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 /* ---------------- gate ---------------- */
 #gate{
   position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center;
-  background:radial-gradient(90% 70% at 50% 40%, var(--forest) 0%, var(--forest-deep) 100%);
-  color:var(--ivory); transition:opacity .8s var(--ease), visibility .8s;
+  background:radial-gradient(90% 70% at 50% 40%, var(--forest-light) 0%, var(--forest) 100%);
+  color:var(--forest-deep); transition:opacity .8s var(--ease), visibility .8s;
   text-align:center; padding:24px; overflow:hidden;
 }
 #gate.closed{ opacity:0; visibility:hidden; pointer-events:none; }
 #gate .gate-inner{ position:relative; z-index:2; }
 #gate .signature-bloom{ width:130px; top:-20px; left:-25px; transform:rotate(-10deg); opacity:.35; }
-.tap-hint{ margin-top:20px; font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--tan); opacity:.75; }
+.tap-hint{ margin-top:20px; font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--bark); opacity:.75; }
 
 /* envelope */
 .envelope{
@@ -193,7 +195,7 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 .envelope.opening .env-card{ z-index:5; transform:translateY(-20%) scale(1.03); opacity:1; }
 
 /* ---------------- hero ---------------- */
-.names{ font-style:italic; font-weight:500; line-height:1.05; color:var(--ivory); }
+.names{ font-weight:400; line-height:1.05; color:var(--forest-deep); }
 .amp{ font-family:'Beau Rivage',cursive; font-style:normal; color:var(--honey); }
 
 .hero-frame{
@@ -204,9 +206,9 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 .hero-frame .signature-bloom.top-mini{ width:44px; top:22px; left:50%; transform:translateX(-50%); opacity:.9; }
 .hero-frame .signature-bloom.frame-bl{ width:70px; bottom:-22px; left:-24px; transform:rotate(-18deg); opacity:.85; }
 .hero-frame .signature-bloom.frame-br{ width:76px; bottom:-26px; right:-26px; transform:rotate(22deg); opacity:.85; }
-.hero .names{ font-size:clamp(42px,13vw,62px); line-height:1.05; }
+.hero .names{ font-family:'Rouge Script',cursive; font-size:clamp(52px,15vw,76px); line-height:1.1; }
 .hero .amp{ display:block; font-size:.44em; margin:8px 0; }
-.hero .sub{ margin-top:22px; font-size:11.5px; letter-spacing:.1em; color:var(--tan); opacity:.9; }
+.hero .sub{ margin-top:22px; font-size:11.5px; letter-spacing:.1em; color:var(--bark); opacity:.9; }
 .hero .roles{ margin-top:28px; display:flex; flex-direction:column; gap:4px; font-size:13px; opacity:.9; }
 .hero .amp2{ font-family:'Beau Rivage',cursive; color:var(--honey); font-size:1.3em; }
 
@@ -216,7 +218,7 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 /* ---------------- parents ---------------- */
 .parents-grid{ display:flex; flex-direction:column; gap:32px; margin-top:8px; }
 .parents-grid .who{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--bark); margin-bottom:8px; opacity:.85; }
-.parents-grid .names{ font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:500; color:var(--forest-deep); }
+.parents-grid .names{ font-family:'Niconne',cursive; font-size:23px; font-weight:400; color:var(--forest-deep); }
 .parents-grid .place{ font-size:13px; color:var(--bark); margin-top:6px; opacity:.85; }
 
 /* ---------------- countdown + calendar ---------------- */
@@ -226,7 +228,7 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 .countdown .box .l{ font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--bark); margin-top:6px; }
 
 .cal{ margin-top:28px; background:var(--white); border-radius:10px; padding:18px 16px 20px; }
-.cal .cal-head{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px; font-weight:500; margin-bottom:12px; color:var(--forest-deep); }
+.cal .cal-head{ font-family:'Niconne',cursive; font-weight:400; font-size:18px; margin-bottom:12px; color:var(--forest-deep); }
 .cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:6px; font-family:'Space Mono',monospace; }
 .cal-grid .dow{ font-size:9px; color:var(--honey); text-transform:uppercase; padding-bottom:4px; }
 .cal-grid .d{ font-size:12px; padding:6px 0; border-radius:50%; color:var(--forest-deep); opacity:.5; }
@@ -240,6 +242,13 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 .sched-card .time{ font-family:'Space Mono',monospace; font-size:24px; font-weight:700; color:var(--forest-deep); }
 .sched-card .venue{ font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:500; margin-top:8px; color:var(--forest-deep); }
 .sched-card .addr{ font-size:13px; color:var(--bark); margin-top:2px; opacity:.85; }
+
+/* ---------------- dress code / palette ---------------- */
+.palette-card{ padding:26px; }
+.palette-grid{ display:flex; flex-wrap:wrap; gap:22px; justify-content:center; margin-top:4px; }
+.swatch{ display:flex; flex-direction:column; align-items:center; gap:8px; width:72px; }
+.swatch-circle{ display:block; width:52px; height:52px; border-radius:50%; box-shadow:0 8px 18px -8px rgba(31,51,40,.35); }
+.swatch-label{ font-size:11px; letter-spacing:.02em; color:var(--forest-deep); text-align:center; line-height:1.3; }
 
 /* ---------------- gallery carousel (fanned stack, continuous glide) ---------------- */
 .gallery-carousel{ position:relative; }
@@ -276,14 +285,14 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 .map-card{ padding:0; overflow:hidden; text-align:left; }
 .map-card iframe{ width:100%; height:220px; border:0; display:block; }
 .map-card .map-foot{ padding:18px 20px 22px; }
-.map-card .venue-name{ font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:500; color:var(--forest-deep); }
+.map-card .venue-name{ font-family:'Niconne',cursive; font-size:20px; font-weight:400; color:var(--forest-deep); }
 .map-card .venue-addr{ font-size:13px; color:var(--bark); margin:4px 0 14px; opacity:.85; }
 
 /* ---------------- rsvp / guestbook ---------------- */
 form.rsvp-form{ text-align:left; margin-top:20px; display:flex; flex-direction:column; gap:14px; }
 .field label{ display:block; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--bark); margin-bottom:6px; }
 .field input,.field select,.field textarea{
-  width:100%; padding:11px 13px; font-family:'Jost',sans-serif; font-size:14px;
+  width:100%; padding:11px 13px; font-family:'Noto Serif',serif; font-stretch:62.5%; font-size:14px;
   border:1px solid rgba(92,61,40,.3); border-radius:6px; background:var(--white); color:var(--forest-deep);
 }
 .field textarea{ resize:vertical; min-height:64px; }
@@ -296,7 +305,7 @@ form.rsvp-form{ text-align:left; margin-top:20px; display:flex; flex-direction:c
 
 /* ---------------- gift box ---------------- */
 .gift-tabs{ display:flex; gap:10px; justify-content:center; margin-top:18px; }
-.gift-tab{ flex:1; padding:12px; border-radius:8px; border:1px solid var(--tan); background:var(--white); font-family:'Jost',sans-serif; font-size:13px; font-weight:500; cursor:pointer; color:var(--forest-deep); }
+.gift-tab{ flex:1; padding:12px; border-radius:8px; border:1px solid var(--tan); background:var(--white); font-family:'Noto Serif',serif; font-stretch:62.5%; font-size:13px; font-weight:500; cursor:pointer; color:var(--forest-deep); }
 .gift-tab.active{ background:var(--honey); color:var(--forest-deep); border-color:var(--honey); }
 .qr-box{
   display:block; margin:18px auto 0; aspect-ratio:1; max-width:170px; width:100%;
@@ -331,7 +340,7 @@ form.rsvp-form{ text-align:left; margin-top:20px; display:flex; flex-direction:c
 
 /* ---------------- footer ---------------- */
 .footer-heart{ font-size:26px; color:var(--honey); margin-bottom:14px; }
-.footer-msg{ font-family:'Beau Rivage',cursive; font-size:30px; color:var(--tan); }
+.footer-msg{ font-family:'Beau Rivage',cursive; font-size:30px; color:var(--bark); }
 
 /* ---------------- reveal ---------------- */
 .reveal{ opacity:0; transform:translateY(14px); transition:opacity .7s var(--ease), transform .7s var(--ease); }

@@ -6,7 +6,7 @@
 <title>Jamille &amp; Irelyn — Wedding Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Niconne&family=Noto+Serif:ital,wdth,wght@0,62.5,400;0,62.5,500;0,62.5,600&family=Rouge+Script&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -89,6 +89,7 @@
   <button data-target="parents" aria-label="Parents"></button>
   <button data-target="countdown" aria-label="Countdown"></button>
   <button data-target="schedule" aria-label="Schedule"></button>
+  <button data-target="dresscode" aria-label="Dress Code"></button>
   <button data-target="gallery" aria-label="Gallery"></button>
   <button data-target="map" aria-label="Map"></button>
   <button data-target="rsvp" aria-label="RSVP"></button>
@@ -191,12 +192,45 @@
   </div>
 </section>
 
-<!-- ================= GALLERY ================= -->
-<section class="slide slide--dark" id="gallery" data-index="5">
+<!-- ================= DRESS CODE / COLOR PALETTE ================= -->
+<section class="slide slide--tan" id="dresscode" data-index="5">
   <svg class="signature-floral pos-tr" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
   <svg class="signature-heart pos-bl" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
-    <p class="kicker"><span class="num">05</span> A Moment We Cherish</p>
+    <p class="kicker"><span class="num">05</span> A Palette for the Day</p>
+    <h2 style="font-size:20px;font-style:italic;font-weight:500;">Shades We'd Love to See</h2>
+    <p style="font-size:13px;color:var(--bark);opacity:.85;margin-top:10px;">
+      To help our photos glow together, we invite you to wear any of these tones.
+    </p>
+    <div class="card palette-card">
+      <div class="palette-grid">
+        <div class="swatch">
+          <span class="swatch-circle" style="background:#E3D5B8;"></span>
+          <span class="swatch-label">Beige</span>
+        </div>
+        <div class="swatch">
+          <span class="swatch-circle" style="background:var(--bark);"></span>
+          <span class="swatch-label">Brown</span>
+        </div>
+        <div class="swatch">
+          <span class="swatch-circle" style="background:#B7CBB0;"></span>
+          <span class="swatch-label">Pastel Green</span>
+        </div>
+        <div class="swatch">
+          <span class="swatch-circle" style="background:var(--ivory);border:1px solid rgba(92,61,40,.25);"></span>
+          <span class="swatch-label">Cream</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="slide slide--dark" id="gallery" data-index="6">
+  <svg class="signature-floral pos-tr" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
+  <svg class="signature-heart pos-bl" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
+  <div class="slide-inner reveal">
+    <p class="kicker"><span class="num">06</span> A Moment We Cherish</p>
     <div class="gallery-carousel">
       <div class="carousel-track" id="carouselTrack">
         <div class="carousel-card"><img src="images/image-1.png" alt="Jamille and Irelyn — photo 1" loading="lazy"></div>
@@ -219,11 +253,11 @@
 </section>
 
 <!-- ================= MAP ================= -->
-<section class="slide slide--cream texture" id="map" data-index="6">
+<section class="slide slide--cream texture" id="map" data-index="7">
   <svg class="signature-floral pos-tl" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
   <svg class="signature-heart pos-br" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
-    <p class="kicker"><span class="num">06</span> Find Us Here</p>
+    <p class="kicker"><span class="num">07</span> Find Us Here</p>
     <div class="card map-card">
       <iframe
         src="https://www.google.com/maps?q=Joble-Mote%27s+Residence%2C+Sitio+Sulukan%2C+Brgy.+Anastacia%2C+Tiaong%2C+Quezon&output=embed"
@@ -240,11 +274,11 @@
 </section>
 
 <!-- ================= RSVP + GUESTBOOK ================= -->
-<section class="slide slide--tan" id="rsvp" data-index="7">
+<section class="slide slide--tan" id="rsvp" data-index="8">
   <svg class="signature-floral pos-tr" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
   <svg class="signature-heart pos-bl" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
-    <p class="kicker"><span class="num">07</span> RSVP &amp; Well Wishes</p>
+    <p class="kicker"><span class="num">08</span> RSVP &amp; Well Wishes</p>
     <h2 style="font-size:20px;font-style:italic;font-weight:500;">Your presence is the greatest gift</h2>
     <form class="rsvp-form" id="wishForm">
       <div class="field"><label for="wName">Your Name</label><input type="text" id="wName" required></div>
@@ -260,11 +294,11 @@
 </section>
 
 <!-- ================= GIFT BOX ================= -->
-<section class="slide slide--cream texture" id="gift" data-index="8">
+<section class="slide slide--cream texture" id="gift" data-index="9">
   <svg class="signature-floral pos-tl" viewBox="0 0 160 160" aria-hidden="true"><use href="#floral"/></svg>
   <svg class="signature-heart pos-br" viewBox="0 0 100 90" aria-hidden="true"><use href="#heartmark"/></svg>
   <div class="slide-inner reveal">
-    <p class="kicker"><span class="num">08</span> Gift Box</p>
+    <p class="kicker"><span class="num">09</span> Gift Box</p>
     <h2 style="font-size:20px;font-style:italic;font-weight:500;">Send Your Blessing</h2>
     <div class="gift-tabs">
       <button class="gift-tab active" data-target="groom">Groom</button>
@@ -281,7 +315,7 @@
 <section class="slide slide--dark" id="footerslide" data-index="9">
   <div class="slide-inner reveal">
     <div class="footer-heart">&#9825;</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;font-style:italic;color:var(--ivory);">With love,</h2>
+    <h2 style="font-family:'Niconne',cursive;font-size:22px;font-weight:400;color:var(--forest-deep);">With love,</h2>
     <p class="footer-msg">Jamille &amp; Irelyn</p>
   </div>
 </section>
@@ -362,7 +396,7 @@
   // exactly as its 1-viewport-height slice of the pinned scroll passes.
   pages.forEach((page, i) => {
     if (i === pages.length - 1) return; // last page has nothing left to reveal
-    flipTl.to(page, { rotateX: -180, ease: 'none', duration: 1 }, i);
+    flipTl.to(page, { rotateX: 180, ease: 'none', duration: 1 }, i);
   });
 
   dots.forEach((d, i) => d.addEventListener('click', () => {
