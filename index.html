@@ -96,6 +96,8 @@
   <button data-target="footerslide" aria-label="Closing"></button>
 </nav>
 
+<div class="book" id="book">
+
 <!-- ================= HERO ================= -->
 <section class="slide slide--dark hero" id="hero" data-index="1">
   <div class="slide-inner content">
@@ -203,19 +205,7 @@
         <div class="carousel-card"><img src="images/image-4.png" alt="Jamille and Irelyn — photo 4" loading="lazy"></div>
         <div class="carousel-card"><img src="images/image-5.png" alt="Jamille and Irelyn — photo 5" loading="lazy"></div>
         <div class="carousel-card"><img src="images/image-6.png" alt="Jamille and Irelyn — photo 6" loading="lazy"></div>
-        <div class="carousel-card" aria-hidden="true"><img src="images/image-1.png" alt="" loading="lazy"></div>
-        <div class="carousel-card" aria-hidden="true"><img src="images/image-2.png" alt="" loading="lazy"></div>
-        <div class="carousel-card" aria-hidden="true"><img src="images/image-3.png" alt="" loading="lazy"></div>
-        <div class="carousel-card" aria-hidden="true"><img src="images/image-4.png" alt="" loading="lazy"></div>
-        <div class="carousel-card" aria-hidden="true"><img src="images/image-5.png" alt="" loading="lazy"></div>
-        <div class="carousel-card" aria-hidden="true"><img src="images/image-6.png" alt="" loading="lazy"></div>
       </div>
-      <button class="carousel-arrow prev" id="carouselPrev" aria-label="Previous photo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="carousel-arrow next" id="carouselNext" aria-label="Next photo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
       <div class="carousel-dots" id="carouselDots">
         <button class="active" aria-label="Photo 1"></button>
         <button aria-label="Photo 2"></button>
@@ -287,12 +277,6 @@
   </div>
 </section>
 
-<!-- ================= QR LIGHTBOX ================= -->
-<div class="lightbox" id="qrLightbox" aria-hidden="true">
-  <button class="lightbox-close" id="qrLightboxClose" aria-label="Close">&times;</button>
-  <img id="qrLightboxImg" src="" alt="">
-</div>
-
 <!-- ================= FOOTER ================= -->
 <section class="slide slide--dark" id="footerslide" data-index="9">
   <div class="slide-inner reveal">
@@ -302,6 +286,16 @@
   </div>
 </section>
 
+</div><!-- /.book -->
+
+<!-- ================= QR LIGHTBOX ================= -->
+<div class="lightbox" id="qrLightbox" aria-hidden="true">
+  <button class="lightbox-close" id="qrLightboxClose" aria-label="Close">&times;</button>
+  <img id="qrLightboxImg" src="" alt="">
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
   const html = document.documentElement;
   html.classList.add('locked');
@@ -315,6 +309,7 @@
       document.getElementById('gate').classList.add('closed');
       html.classList.remove('locked');
       html.classList.add('opened');
+      ScrollTrigger.refresh();
     }, 950);
   });
 
@@ -324,19 +319,55 @@
   }, { threshold: 0.2 });
   document.querySelectorAll('.reveal').forEach(el => revealIo.observe(el));
 
-  // ---- dot nav sync ----
+  // ---- book page-flip (GSAP ScrollTrigger) ----
+  gsap.registerPlugin(ScrollTrigger);
+
   const dots = document.querySelectorAll('#dotnav button');
-  const slides = document.querySelectorAll('.slide[data-index]');
-  const navIo = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        dots.forEach(d => d.classList.toggle('active', d.dataset.target === e.target.id));
-      }
+  const bookEl = document.getElementById('book');
+  const pages = gsap.utils.toArray('.book > .slide');
+
+  // stack pages front-to-back in document order: page 1 on top, covering
+  // every page after it, until the timeline rotates it out of the way.
+  pages.forEach((page, i) => { page.style.zIndex = pages.length - i; });
+
+  // only the page currently "on top" should be interactive/announced —
+  // stops clicks, wheel, and screen readers reaching pages stacked underneath.
+  function setActivePage(i) {
+    pages.forEach((p, idx) => {
+      const isActive = idx === i;
+      p.style.pointerEvents = isActive ? 'auto' : 'none';
+      p.setAttribute('aria-hidden', String(!isActive));
     });
-  }, { threshold: 0.55 });
-  slides.forEach(s => navIo.observe(s));
-  dots.forEach(d => d.addEventListener('click', () => {
-    document.getElementById(d.dataset.target).scrollIntoView({ behavior: 'smooth' });
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+  setActivePage(0);
+
+  const flipTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: bookEl,
+      start: 'top top',
+      end: () => '+=' + (pages.length - 1) * window.innerHeight,
+      scrub: true,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate(self) {
+        const active = Math.min(pages.length - 1, Math.round(self.progress * (pages.length - 1)));
+        setActivePage(active);
+      }
+    }
+  });
+
+  // one segment per page-turn: page[i] flips away (top hinge, -180deg)
+  // exactly as its 1-viewport-height slice of the pinned scroll passes.
+  pages.forEach((page, i) => {
+    if (i === pages.length - 1) return; // last page has nothing left to reveal
+    flipTl.to(page, { rotateX: -180, ease: 'none', duration: 1 }, i);
+  });
+
+  dots.forEach((d, i) => d.addEventListener('click', () => {
+    const st = flipTl.scrollTrigger;
+    window.scrollTo({ top: st.start + i * window.innerHeight, behavior: 'smooth' });
   }));
 
   // ---- live countdown ----
@@ -410,79 +441,54 @@
   qrLightbox.addEventListener('click', (e) => { if (e.target === qrLightbox) closeQrLightbox(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeQrLightbox(); });
 
-  // ---- gallery carousel (card style, continuous auto-scroll) ----
+  // ---- gallery carousel (3D coverflow, continuous glide) ----
   const track = document.getElementById('carouselTrack');
-  const allCardEls = Array.from(track.querySelectorAll('.carousel-card'));
-  const cards = allCardEls.filter(c => !c.hasAttribute('aria-hidden'));
-  const cloneCards = allCardEls.filter(c => c.hasAttribute('aria-hidden'));
+  const cards = Array.from(track.querySelectorAll('.carousel-card'));
   const dotButtons = document.querySelectorAll('#carouselDots button');
   const gallerySection = document.getElementById('gallery');
-  const slideCount = cards.length;
+  const cardCount = cards.length;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function currentSlide() {
-    const center = track.scrollLeft + track.clientWidth / 2;
-    let closest = 0, minDist = Infinity;
-    cards.forEach((card, idx) => {
-      const dist = Math.abs(center - (card.offsetLeft + card.clientWidth / 2));
-      if (dist < minDist) { minDist = dist; closest = idx; }
-    });
-    return closest;
-  }
-  function goToSlide(i) {
-    i = Math.max(0, Math.min(slideCount - 1, i));
-    const card = cards[i];
-    const target = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
-    track.scrollTo({ left: target, behavior: 'smooth' });
-  }
-  function refreshCarouselUI() {
-    const rect = track.getBoundingClientRect();
-    const viewCenter = rect.left + rect.width / 2;
-    allCardEls.forEach(card => {
-      const cRect = card.getBoundingClientRect();
-      const dist = Math.abs(viewCenter - (cRect.left + cRect.width / 2));
-      const t = Math.min(dist / (rect.width / 2), 1);
-      card.style.transform = `scale(${1 - t * 0.12})`;
-      card.style.opacity = String(1 - t * 0.45);
-    });
-    const active = currentSlide();
-    dotButtons.forEach((d, idx) => d.classList.toggle('active', idx === active));
-  }
+  const SPACING = 0.50;         // step offset from center, as a fraction of card width
+  const SCALE_STEP = 0.15;      // size falloff per step away from center
+  const OPACITY_STEP = 0.28;    // fade falloff per step away from center
+  const MAX_VISIBLE_STEPS = 2.4;
+  const SECONDS_PER_SLIDE = 6.5;
+  const ROTATE_STEP = 45;       // degrees of Y-axis tilt per step away from center
+  const Z_STEP = 145;           // px pushed back into depth per step away from center
 
-  // the point at which the track has scrolled exactly one full set of
-  // real cards — used to wrap scrollLeft back seamlessly into the clones
-  let loopWidth = cloneCards.length ? (cloneCards[0].offsetLeft - cards[0].offsetLeft) : 0;
-
-  document.getElementById('carouselPrev').addEventListener('click', () => { goToSlide(currentSlide() - 1); pauseThenResume(); });
-  document.getElementById('carouselNext').addEventListener('click', () => { goToSlide(currentSlide() + 1); pauseThenResume(); });
-  dotButtons.forEach((d, i) => d.addEventListener('click', () => { goToSlide(i); pauseThenResume(); }));
-  track.addEventListener('pointerdown', pauseThenResume);
-  track.addEventListener('mouseenter', () => { hovering = true; });
-  track.addEventListener('mouseleave', () => { hovering = false; });
-
-  let scrollRaf;
-  track.addEventListener('scroll', () => {
-    cancelAnimationFrame(scrollRaf);
-    scrollRaf = requestAnimationFrame(refreshCarouselUI);
-  });
-  window.addEventListener('resize', () => {
-    loopWidth = cloneCards.length ? (cloneCards[0].offsetLeft - cards[0].offsetLeft) : 0;
-    refreshCarouselUI();
-  });
-  refreshCarouselUI();
-
-  // continuous ticker-style glide: nudges scrollLeft a fraction of a
-  // pixel every frame, and wraps seamlessly into the duplicated cards
+  // "position" is a continuous float — 2.35 means partway between card 2 and
+  // card 3. Auto-play nudges it steadily forward; drags and dot clicks move
+  // it directly or ease it toward a target, so nothing ever jump-cuts.
+  let position = 0, dragTarget = null;
+  let dragStartX = null, dragStartPos = null, dragging = false;
   let galleryInView = false, hovering = false, userPaused = false, resumeTimer;
-  const GLIDE_SPEED = 0.4; // px per frame, roughly 24px/second
-  function glide() {
-    if (!reduceMotion && galleryInView && !hovering && !userPaused && loopWidth > 0) {
-      track.scrollLeft += GLIDE_SPEED;
-      if (track.scrollLeft >= loopWidth) track.scrollLeft -= loopWidth;
-    }
-    requestAnimationFrame(glide);
+
+  function wrappedDelta(i, pos) {
+    let d = i - pos;
+    d = ((d % cardCount) + cardCount) % cardCount;
+    if (d > cardCount / 2) d -= cardCount;   // shortest signed distance, handles the loop
+    return d;
   }
-  requestAnimationFrame(glide);
+
+  function render() {
+    const trackWidth = track.clientWidth;
+    cards.forEach((card, i) => {
+      const d = wrappedDelta(i, position);
+      const abs = Math.abs(d);
+      if (abs > MAX_VISIBLE_STEPS) { card.style.opacity = '0'; card.style.zIndex = '0'; return; }
+      const scale = Math.max(0.001, 1 - abs * SCALE_STEP);
+      const opacity = Math.max(0, 1 - abs * OPACITY_STEP);
+      const angle = d * ROTATE_STEP;              // left cards tilt +deg (face right/center), right cards tilt -deg
+      const depth = -abs * Z_STEP;                 // every off-center card recedes from the viewer
+      card.style.transform =
+        `translate(-50%, 0) translateX(${d * SPACING * trackWidth}px) translateZ(${depth}px) rotateY(${angle}deg) scale(${scale})`;
+      card.style.opacity = String(opacity);
+      card.style.zIndex = String(Math.round(1000 - abs * 10));
+    });
+    const active = Math.round(((position % cardCount) + cardCount) % cardCount) % cardCount;
+    dotButtons.forEach((d, i) => d.classList.toggle('active', i === active));
+  }
 
   function pauseThenResume() {
     userPaused = true;
@@ -490,10 +496,49 @@
     resumeTimer = setTimeout(() => { userPaused = false; }, 5000);
   }
 
-  const galleryIo = new IntersectionObserver((entries) => {
-    entries.forEach(e => { galleryInView = e.isIntersecting; });
-  }, { threshold: 0.4 });
-  galleryIo.observe(gallerySection);
+  dotButtons.forEach((d, i) => d.addEventListener('click', () => { dragTarget = i; pauseThenResume(); }));
+
+  track.addEventListener('pointerdown', (e) => {
+    dragging = true; dragStartX = e.clientX; dragStartPos = position; dragTarget = null;
+    track.setPointerCapture(e.pointerId);
+    pauseThenResume();
+  });
+  track.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    position = dragStartPos - (e.clientX - dragStartX) / (track.clientWidth * SPACING);
+  });
+  function endDrag() { if (dragging) { dragging = false; dragTarget = Math.round(position); } }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+  track.addEventListener('mouseenter', () => { hovering = true; });
+  track.addEventListener('mouseleave', () => { hovering = false; });
+
+  function carouselTick() {                     // renamed from tick() — this was colliding with the countdown's tick()
+    if (dragTarget !== null) {
+      const delta = wrappedDelta(dragTarget, position);
+      position += delta * 0.12;
+      if (Math.abs(delta) < 0.01) { position = dragTarget; dragTarget = null; }
+    } else if (!reduceMotion && galleryInView && !hovering && !userPaused && !dragging) {
+      position += 1 / (60 * SECONDS_PER_SLIDE);
+    }
+    position = ((position % cardCount) + cardCount) % cardCount;
+    render();
+    requestAnimationFrame(carouselTick);
+  }
+  window.addEventListener('resize', render);
+  requestAnimationFrame(carouselTick);
+
+  // gallery sits inside the pinned .book as one of several fully-overlapping
+  // pages, so a plain IntersectionObserver would see it as "in view" for the
+  // entire pinned scroll region regardless of which page is on top. Instead,
+  // hook into setActivePage so the glide only runs while gallery is showing.
+  const galleryPageIndex = pages.indexOf(gallerySection);
+  const _setActivePage = setActivePage;
+  setActivePage = function(i) {
+    _setActivePage(i);
+    galleryInView = (i === galleryPageIndex);
+  };
+  galleryInView = (galleryPageIndex === 0);
 </script>
 
 </body>

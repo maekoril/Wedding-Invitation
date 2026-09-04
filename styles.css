@@ -12,9 +12,10 @@
 
 *{ box-sizing:border-box; }
 html,body{ margin:0; height:100%; }
-html{ scroll-behavior:smooth; }
 html.locked, html.locked body{ overflow:hidden; }
-html.opened{ scroll-snap-type: y proximity; }
+/* scroll-snap removed: the .book wrapper below is pinned and driven by
+   GSAP ScrollTrigger, which owns scroll physics for that region now.
+   Native snap + scroll-behavior:smooth both fight the scrub and were dropped. */
 body{ background:var(--forest); font-family:'Jost',sans-serif; color:var(--ivory); -webkit-tap-highlight-color: transparent;}
 
 /* hide native scrollbars — dot nav is the visual scroll indicator */
@@ -91,11 +92,32 @@ svg.assets{ position:absolute; width:0; height:0; }
   background-size: 22px 22px; opacity:.05;
 }
 
+/* ---------------- book (scroll-tied vertical page flip) ---------------- */
+/* .book is the GSAP ScrollTrigger pin target. perspective here is what
+   gives the rotateX on its children actual 3D depth. */
+.book{
+  position:relative;
+  height:100svh;
+  perspective:2200px;
+  perspective-origin:50% 50%;
+}
+/* every .slide inside .book becomes a stacked "page": all pages occupy
+   the exact same viewport rect (position:absolute; inset:0) so the page
+   underneath is already sitting there, ready to be revealed. */
+.book .slide{
+  position:absolute; inset:0; width:100%; height:100%; min-height:0;
+  transform-style:preserve-3d;
+  transform-origin:50% 0%;           /* hinge at the top edge, like a calendar */
+  backface-visibility:hidden;         /* hides the page once it rotates past 90deg */
+  -webkit-backface-visibility:hidden;
+  will-change:transform;
+}
+
 /* ---------------- slides ---------------- */
 .slide{
   position:relative; min-height:100svh; display:flex; flex-direction:column;
   align-items:center; justify-content:center; padding:100px 26px;
-  scroll-snap-align:start; overflow:hidden; text-align:center;
+  overflow:hidden; text-align:center;
 }
 .slide-inner{ position:relative; z-index:2; max-width:440px; width:100%; max-height:100%; overflow-y:hidden; }
 .slide--dark{ background:radial-gradient(90% 70% at 50% 38%, var(--forest) 0%, var(--forest-deep) 100%); color:var(--ivory); }
@@ -219,37 +241,35 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 .sched-card .venue{ font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:500; margin-top:8px; color:var(--forest-deep); }
 .sched-card .addr{ font-size:13px; color:var(--bark); margin-top:2px; opacity:.85; }
 
-/* ---------------- gallery carousel (card style) ---------------- */
+/* ---------------- gallery carousel (fanned stack, continuous glide) ---------------- */
 .gallery-carousel{ position:relative; }
 .carousel-track{
-  display:flex; gap:14px; overflow-x:auto; scroll-behavior:smooth;
-  padding-inline:11%; aspect-ratio:4/5;
+  position:relative; height:min(58vh,420px);
+  touch-action:pan-y; /* vertical page-scroll passes through; horizontal drag is ours */
+  cursor:grab;
+  perspective:1200px;          /* add this */
+  perspective-origin:50% 50%;
 }
+.carousel-track:active{ cursor:grabbing; }
 .carousel-card{
-  flex:0 0 100%; background:var(--ivory);
-  border:1px solid var(--tan); border-radius:14px; padding:8px; box-sizing:border-box;
-  box-shadow:0 24px 48px -20px rgba(0,0,0,.5);
-  transition:transform .3s var(--ease), opacity .3s var(--ease);
+  position:absolute; top:0; left:50%; width:68%; max-width:260px; height:100%;
+  background:var(--ivory); border:1px solid var(--tan); border-radius:16px; padding:8px;
+  box-sizing:border-box; box-shadow:0 24px 48px -20px rgba(0,0,0,.5);
+  pointer-events:none; /* the track handles drag; individual cards don't need listeners */
+  will-change:transform, opacity;
+  transform-style:preserve-3d;    /* add this */
+  backface-visibility:hidden;     /* add this */
 }
 .carousel-card img{
-  width:100%; height:100%; object-fit:cover; border-radius:8px; display:block;
+  width:100%; height:100%; object-fit:cover; border-radius:10px; display:block;
+  -webkit-user-drag:none; user-select:none;
 }
-.carousel-arrow{
-  position:absolute; top:50%; transform:translateY(-50%); z-index:2;
-  width:36px; height:36px; border-radius:50%; border:none; cursor:pointer;
-  background:rgba(251,243,228,.92); color:var(--forest-deep);
-  display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,.3);
-}
-.carousel-arrow svg{ width:16px; height:16px; }
-.carousel-arrow.prev{ left:10px; }
-.carousel-arrow.next{ right:10px; }
-.carousel-arrow:focus-visible{ outline:2px solid var(--honey); outline-offset:2px; }
-.carousel-dots{ display:flex; gap:8px; justify-content:center; margin-top:16px; }
+.carousel-dots{ display:flex; gap:8px; justify-content:center; margin-top:20px; }
 .carousel-dots button{
-  width:7px; height:7px; border-radius:50%; border:1px solid var(--honey);
+  width:7px; height:7px; border-radius:999px; border:1px solid var(--honey);
   background:transparent; padding:0; cursor:pointer; transition:all .3s var(--ease);
 }
-.carousel-dots button.active{ background:var(--honey); width:8px; height:8px; }
+.carousel-dots button.active{ background:var(--honey); width:20px; height:7px; }
 .carousel-dots button:focus-visible{ outline:2px solid var(--honey); outline-offset:2px; }
 
 /* ---------------- map ---------------- */
