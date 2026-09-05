@@ -187,8 +187,7 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
   transform:translate(-50%,-50%);
   transition:transform .5s var(--ease), opacity .5s var(--ease);
 }
-.env-seal .seal-mono{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:15px; color:var(--forest-deep); }
-.env-seal .seal-amp{ color:var(--forest-deep); opacity:.7; margin:0 1px; }
+.env-seal .seal-logo{ height:78%; width:auto; object-fit:contain; }
 .envelope.opening{ animation:none; }
 .envelope.opening .env-flap{ transform:rotateX(-150deg); opacity:0; }
 .envelope.opening .env-seal{ transform:translate(-50%,-50%) scale(.35); opacity:0; }
