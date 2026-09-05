@@ -38,18 +38,18 @@ h1,h2{ font-family:'Niconne',cursive; font-weight:400; margin:0; }
 
 .eyebrow{
   font-family:'Niconne',cursive; font-weight:400;
-  font-size:19px; line-height:1.4; margin:0 0 26px; color:var(--forest-deep);
+  font-size:22px; line-height:1.4; margin:0 0 26px; color:var(--forest-deep);
 }
 .kicker{
   display:flex; align-items:center; justify-content:center; gap:10px;
-  font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:500;
+  font-size:14px; letter-spacing:.16em; text-transform:uppercase; font-weight:500;
   margin-bottom:26px; opacity:.85;
 }
-.kicker .num{ font-family:'Space Mono',monospace; font-size:11px; color:var(--honey); }
+.kicker .num{ font-family:'Space Mono',monospace; font-size:14px; color:var(--honey); }
 .kicker .num::after{ content:"/10"; opacity:.55; margin-left:2px; color:inherit; }
 
 .btn{
-  display:inline-block; padding:14px 32px; text-decoration:none; font-size:12px;
+  display:inline-block; padding:14px 32px; text-decoration:none; font-size:15px;
   letter-spacing:.12em; text-transform:uppercase; font-weight:500; border-radius:999px;
   border:1.4px solid currentColor; cursor:pointer; font-family:'Noto Serif',serif; font-stretch:62.5%; background:none;
   transition:transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
@@ -157,7 +157,7 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 #gate.closed{ opacity:0; visibility:hidden; pointer-events:none; }
 #gate .gate-inner{ position:relative; z-index:2; }
 #gate .signature-bloom{ width:130px; top:-20px; left:-25px; transform:rotate(-10deg); opacity:.35; }
-.tap-hint{ margin-top:20px; font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--bark); opacity:.75; }
+.tap-hint{ margin-top:20px; font-size:14px; letter-spacing:.26em; text-transform:uppercase; color:var(--bark); opacity:.75; }
 
 /* envelope */
 .envelope{
@@ -205,9 +205,9 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 .hero-frame .signature-bloom.top-mini{ width:44px; top:22px; left:50%; transform:translateX(-50%); opacity:.9; }
 .hero-frame .signature-bloom.frame-bl{ width:70px; bottom:-22px; left:-24px; transform:rotate(-18deg); opacity:.85; }
 .hero-frame .signature-bloom.frame-br{ width:76px; bottom:-26px; right:-26px; transform:rotate(22deg); opacity:.85; }
-.hero .names{ font-family:'Rouge Script',cursive; font-size:clamp(52px,15vw,76px); line-height:1.1; }
+.hero .names{ font-family:'Rouge Script',cursive; font-size: clamp(55px,15vw,79px); line-height:1.1; }
 .hero .amp{ display:block; font-size:.44em; margin:8px 0; }
-.hero .sub{ margin-top:22px; font-size:11.5px; letter-spacing:.1em; color:var(--bark); opacity:.9; }
+.hero .sub{ margin-top:22px; font-size:14.5px; letter-spacing:.1em; color:var(--bark); opacity:.9; }
 .hero .roles{ margin-top:28px; display:flex; flex-direction:column; gap:4px; font-size:13px; opacity:.9; }
 .hero .amp2{ font-family:'Beau Rivage',cursive; color:var(--honey); font-size:1.3em; }
 
@@ -216,14 +216,14 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 
 /* ---------------- parents ---------------- */
 .parents-grid{ display:flex; flex-direction:column; gap:32px; margin-top:8px; }
-.parents-grid .who{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--bark); margin-bottom:8px; opacity:.85; }
-.parents-grid .names{ font-family:'Niconne',cursive; font-size:23px; font-weight:400; color:var(--forest-deep); }
-.parents-grid .place{ font-size:13px; color:var(--bark); margin-top:6px; opacity:.85; }
+.parents-grid .who{ font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--bark); margin-bottom:8px; opacity:.85; }
+.parents-grid .names{ font-family:'Niconne',cursive; font-size:26px; font-weight:400; color:var(--forest-deep); }
+.parents-grid .place{ font-size:16px; color:var(--bark); margin-top:6px; opacity:.85; }
 
 /* ---------------- countdown + calendar ---------------- */
 .countdown{ display:flex; gap:10px; justify-content:center; margin:22px 0 8px; }
 .countdown .box{ background:var(--white); border-radius:8px; padding:14px 6px; width:70px; }
-.countdown .box .n{ font-family:'Space Mono',monospace; font-size:24px; font-weight:700; line-height:1; color:var(--forest-deep); }
+.countdown .box .n{ font-family:'Space Mono',monospace; font-size:27px; font-weight:700; line-height:1; color:var(--forest-deep); }
 .countdown .box .l{ font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--bark); margin-top:6px; }
 
 .cal{ margin-top:28px; background:var(--white); border-radius:10px; padding:18px 16px 20px; }
@@ -237,17 +237,17 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 /* ---------------- schedule ---------------- */
 .sched-card{ text-align:left; }
 .sched-card + .sched-card{ margin-top:18px; padding-top:18px; border-top:1px dashed rgba(92,61,40,.3); }
-.sched-card .kind{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--honey); font-weight:600; margin-bottom:6px; }
-.sched-card .time{ font-family:'Space Mono',monospace; font-size:24px; font-weight:700; color:var(--forest-deep); }
-.sched-card .venue{ font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:500; margin-top:8px; color:var(--forest-deep); }
-.sched-card .addr{ font-size:13px; color:var(--bark); margin-top:2px; opacity:.85; }
+.sched-card .kind{ font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--honey); font-weight:600; margin-bottom:6px; }
+.sched-card .time{ font-family:'Space Mono',monospace; font-size:27px; font-weight:700; color:var(--forest-deep); }
+.sched-card .venue{ font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:500; margin-top:8px; color:var(--forest-deep); }
+.sched-card .addr{ font-size:16px; color:var(--bark); margin-top:2px; opacity:.85; }
 
 /* ---------------- dress code / palette ---------------- */
 .palette-card{ padding:26px; }
 .palette-grid{ display:flex; flex-wrap:wrap; gap:22px; justify-content:center; margin-top:4px; }
 .swatch{ display:flex; flex-direction:column; align-items:center; gap:8px; width:72px; }
 .swatch-circle{ display:block; width:52px; height:52px; border-radius:50%; box-shadow:0 8px 18px -8px rgba(31,51,40,.35); }
-.swatch-label{ font-size:11px; letter-spacing:.02em; color:var(--forest-deep); text-align:center; line-height:1.3; }
+.swatch-label{ font-size:14px; letter-spacing:.02em; color:var(--forest-deep); text-align:center; line-height:1.3; }
 
 /* ---------------- gallery carousel (fanned stack, continuous glide) ---------------- */
 .gallery-carousel{ position:relative; }
@@ -284,27 +284,27 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 .map-card{ padding:0; overflow:hidden; text-align:left; }
 .map-card iframe{ width:100%; height:220px; border:0; display:block; }
 .map-card .map-foot{ padding:18px 20px 22px; }
-.map-card .venue-name{ font-family:'Niconne',cursive; font-size:20px; font-weight:400; color:var(--forest-deep); }
-.map-card .venue-addr{ font-size:13px; color:var(--bark); margin:4px 0 14px; opacity:.85; }
+.map-card .venue-name{ font-family:'Niconne',cursive; font-size:23px; font-weight:400; color:var(--forest-deep); }
+.map-card .venue-addr{ font-size:16px; color:var(--bark); margin:4px 0 14px; opacity:.85; }
 
 /* ---------------- rsvp / guestbook ---------------- */
 form.rsvp-form{ text-align:left; margin-top:20px; display:flex; flex-direction:column; gap:14px; }
-.field label{ display:block; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--bark); margin-bottom:6px; }
+.field label{ display:block; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--bark); margin-bottom:6px; }
 .field input,.field select,.field textarea{
-  width:100%; padding:11px 13px; font-family:'Noto Serif',serif; font-stretch:62.5%; font-size:14px;
+  width:100%; padding:11px 13px; font-family:'Noto Serif',serif; font-stretch:62.5%; font-size:17px;
   border:1px solid rgba(92,61,40,.3); border-radius:6px; background:var(--white); color:var(--forest-deep);
 }
 .field textarea{ resize:vertical; min-height:64px; }
 .field input:focus,.field select:focus,.field textarea:focus{ outline:2px solid var(--honey); outline-offset:1px; }
 .wishes{ margin-top:24px; text-align:left; display:flex; flex-direction:column; gap:12px; max-height:180px; overflow-y:auto; }
 .wish{ background:var(--white); border-radius:8px; padding:12px 14px; }
-.wish .who{ font-weight:600; font-size:13px; color:var(--forest-deep); }
-.wish .msg{ font-size:13px; color:var(--bark); margin-top:4px; line-height:1.5; }
-.wishes-empty{ text-align:center; font-size:13px; opacity:.6; padding:10px 0; }
+.wish .who{ font-weight:600; font-size:16px; color:var(--forest-deep); }
+.wish .msg{ font-size:17px; color:var(--bark); margin-top:4px; line-height:1.5; }
+.wishes-empty{ text-align:center; font-size:16px; opacity:.6; padding:10px 0; }
 
 /* ---------------- gift box ---------------- */
 .gift-tabs{ display:flex; gap:10px; justify-content:center; margin-top:18px; }
-.gift-tab{ flex:1; padding:12px; border-radius:8px; border:1px solid var(--tan); background:var(--white); font-family:'Noto Serif',serif; font-stretch:62.5%; font-size:13px; font-weight:500; cursor:pointer; color:var(--forest-deep); }
+.gift-tab{ flex:1; padding:12px; border-radius:8px; border:1px solid var(--tan); background:var(--white); font-family:'Noto Serif',serif; font-stretch:62.5%; font-size:16px; font-weight:500; cursor:pointer; color:var(--forest-deep); }
 .gift-tab.active{ background:var(--honey); color:var(--forest-deep); border-color:var(--honey); }
 .qr-box{
   display:block; margin:18px auto 0; aspect-ratio:1; max-width:170px; width:100%;
@@ -314,7 +314,7 @@ form.rsvp-form{ text-align:left; margin-top:20px; display:flex; flex-direction:c
 .qr-box:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -12px rgba(0,0,0,.35); }
 .qr-box:focus-visible{ outline:2px solid var(--honey); outline-offset:3px; }
 .qr-box img{ width:100%; height:100%; object-fit:contain; padding:12px; box-sizing:border-box; display:block; }
-.gift-note{ font-size:12px; opacity:.6; margin-top:14px; }
+.gift-note{ font-size:15px; opacity:.6; margin-top:14px; }
 
 /* ---------------- qr lightbox ---------------- */
 .lightbox{
@@ -339,7 +339,7 @@ form.rsvp-form{ text-align:left; margin-top:20px; display:flex; flex-direction:c
 
 /* ---------------- footer ---------------- */
 .footer-heart{ font-size:26px; color:var(--honey); margin-bottom:14px; }
-.footer-msg{ font-family:'Beau Rivage',cursive; font-size:30px; color:var(--bark); }
+.footer-msg{ font-family:'Beau Rivage',cursive; font-size:33px; color:var(--bark); }
 
 /* ---------------- reveal ---------------- */
 .reveal{ opacity:0; transform:translateY(14px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
