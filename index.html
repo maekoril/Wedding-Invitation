@@ -377,7 +377,9 @@
 
   // ---- book page-flip (GSAP ScrollTrigger) ----
   gsap.registerPlugin(ScrollTrigger);
-
+  ScrollTrigger.normalizeScroll(true);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  
   const dots = document.querySelectorAll('#dotnav button');
   const bookEl = document.getElementById('book');
   const pages = gsap.utils.toArray('.book > .slide');
