@@ -6,10 +6,12 @@
 <title>Jamille &amp; Irelyn — Wedding Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Niconne&family=Noto+Serif:ital,wdth,wght@0,62.5,400;0,62.5,500;0,62.5,600&family=Rouge+Script&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Niconne&family=Noto+Serif:ital,wdth,wght@0,62.5,400;0,62.5,500;0,62.5,600&family=Rouge+Script&family=Space+Mono:wght@400;700&display=swap&family=Cookie&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <audio class="bgMusic" src="audio/audio.mp3"></audio>
 
 <!-- shared symbols -->
 <svg class="assets" aria-hidden="true">
@@ -108,9 +110,9 @@
       <h1 class="names">Jamille<span class="amp">&amp;</span>Irelyn</h1>
       <p class="sub mono">TUESDAY, THE 22ND OF SEPTEMBER 2026<br>TIAONG, QUEZON</p>
       <div class="roles">
-        <span>Jamille Perona, the Groom</span>
+        <span style="font-size:18px;">Jamille Perona, the Groom</span>
         <span class="amp2">&amp;</span>
-        <span>Irelyn Mote, the Bride</span>
+        <span style="font-size:18px;">Irelyn Mote, the Bride</span>
       </div>
       <svg class="signature-bloom frame-bl" viewBox="0 0 120 120" aria-hidden="true"><use href="#bloom"/></svg>
       <svg class="signature-bloom frame-br" viewBox="0 0 120 120" aria-hidden="true"><use href="#bloom"/></svg>
@@ -178,7 +180,7 @@
     <div class="card">
       <div class="sched-card">
         <p class="kind">Ceremony</p>
-        <p class="time mono">10:00 AM</p>
+        <p class="time mono">9:00 AM</p>
         <p class="venue">Office of the Municipal Mayor</p>
         <p class="addr">Tiaong, Quezon</p>
       </div>
@@ -203,7 +205,6 @@
       To help our photos glow together, we invite you to wear any of these tones.
     </p>
     
-    <p class="dresscode-warning">Please refrain from wearing white. We thank you for your cooperation!</p>
     <div class="card palette-card">
       <div class="palette-grid">
         <div class="swatch">
@@ -224,6 +225,12 @@
         </div>
       </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <p class="dresscode-warning">Please refrain from wearing white. We thank you for your cooperation!</p>
   </div>
 </section>
 
@@ -333,6 +340,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+
+  function bgMusicFunction() {
+    
+  }
   const html = document.documentElement;
   html.classList.add('locked');
 
@@ -575,6 +586,8 @@
     galleryInView = (i === galleryPageIndex);
   };
   galleryInView = (galleryPageIndex === 0);
+
+
 </script>
 
 </body>
