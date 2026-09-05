@@ -377,7 +377,7 @@
 
   // ---- book page-flip (GSAP ScrollTrigger) ----
   gsap.registerPlugin(ScrollTrigger);
-  ScrollTrigger.normalizeScroll(true);
+  ScrollTrigger.normalizeScroll({ momentum: () => 0 });
   ScrollTrigger.config({ ignoreMobileResize: true });
 
   const dots = document.querySelectorAll('#dotnav button');
@@ -423,33 +423,6 @@
     if (i === pages.length - 1) return; // last page has nothing left to reveal
     flipTl.to(page, { rotateX: 180, ease: 'none', duration: 1 }, i);
   });
-
-  // ---- cap touch scroll to one page per gesture (mobile) ----
-  let gestureStartPage = null;
-
-  function pageProgress(y) {
-    const st = flipTl.scrollTrigger;
-    if (!st) return 0;
-    return Math.min(1, Math.max(0, (y - st.start) / (st.end - st.start))) * (pages.length - 1);
-  }
-
-  window.addEventListener('touchstart', () => {
-    gestureStartPage = Math.round(pageProgress(window.scrollY));
-  }, { passive: true });
-
-  window.addEventListener('touchend', () => {
-    gestureStartPage = null;
-  }, { passive: true });
-
-  window.addEventListener('scroll', () => {
-    if (gestureStartPage === null) return;
-    const st = flipTl.scrollTrigger;
-    if (!st) return;
-    const minY = st.start + Math.max(0, gestureStartPage - 1) * window.innerHeight;
-    const maxY = st.start + Math.min(pages.length - 1, gestureStartPage + 1) * window.innerHeight;
-    if (window.scrollY < minY) window.scrollTo(0, minY);
-    if (window.scrollY > maxY) window.scrollTo(0, maxY);
-  }, { passive: true });
 
   dots.forEach((d, i) => d.addEventListener('click', () => {
     const st = flipTl.scrollTrigger;
