@@ -360,3 +360,13 @@ form.rsvp-form{ text-align:left; margin-top:20px; display:flex; flex-direction:c
     transition-duration:.01ms!important; scroll-behavior:auto!important;
   }
 }
+
+@media (max-height: 780px){
+  .slide{ padding:60px 22px; }
+  .hero-frame{ padding:56px 22px 32px; }
+  .hero .names{ font-size:clamp(52px,13vw,68px); }
+  .hero .sub{ margin-top:14px; }
+  .hero .roles{ margin-top:18px; }
+  .hero-frame .signature-bloom.frame-bl,
+  .hero-frame .signature-bloom.frame-br{ width:56px; }
+} 
