@@ -33,12 +33,12 @@ html::-webkit-scrollbar,
 }
 
 h1,h2{ font-family:'Niconne',cursive; font-weight:400; margin:0; }
-.mono{ font-family:'Space Mono',monospace; }
+.mono{ font-family:'Noto Serif',serif; font-size: 18px; }
 .script{ font-family:'Beau Rivage',cursive; }
 
 .eyebrow{
   font-family:'Niconne',cursive; font-weight:400;
-  font-size:22px; line-height:1.4; margin:0 0 26px; color:var(--forest-deep);
+  font-size:28px; line-height:1.4; margin:0 0 26px; color:var(--forest-deep);
 }
 .kicker{
   display:flex; align-items:center; justify-content:center; gap:10px;
