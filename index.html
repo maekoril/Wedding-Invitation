@@ -29,6 +29,11 @@
     <path d="M50,85 C10,60 0,35 18,18 C32,4 48,10 50,28 C52,10 68,4 82,18 C100,35 90,60 50,85 Z"/>
   </symbol>
 
+  <symbol id="cross" viewBox="0 0 100 160">
+    <rect x="40" y="0" width="20" height="160"/>
+    <rect x="10" y="40" width="80" height="20"/>
+  </symbol>
+
   <symbol id="floral" viewBox="0 0 160 160">
     <defs>
       <radialGradient id="petGradOuter" cx="32%" cy="28%" r="80%">
@@ -66,6 +71,8 @@
       <circle class="floral-center" r="10"/>
     </g>
   </symbol>
+
+
 </svg>
 
 <!-- ================= GATE ================= -->
@@ -130,7 +137,7 @@
     <div class="parents-grid">
       <div>
         <p class="who">Groom's Parents</p>
-        <p class="names">Mr. Charlie Perona <br> &amp; <br> Ms. Thelma Marquez</p>
+        <p class="names">Mr. Charlie Perona<svg class="cross-mark" viewBox="0 0 100 160" aria-hidden="true"><use href="#cross"/></svg> <br> &amp; <br> Ms. Thelma Marquez</p>
         <p class="place">Brgy. San Jose, San Pablo City, Laguna</p>
       </div>
       <div>
@@ -206,7 +213,7 @@
     </p>
     
     <br>
-    
+
     <div class="card palette-card">
       <div class="palette-grid">
         <div class="swatch">
@@ -344,7 +351,7 @@
 <script>
 
   function bgMusicFunction() {
-    
+    document.getElementById(bgMusicFunction).value
   }
   const html = document.documentElement;
   html.classList.add('locked');

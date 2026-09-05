@@ -68,6 +68,14 @@ svg.assets{ position:absolute; width:0; height:0; }
 .bloom-center{ fill:var(--forest-deep); stroke:var(--honey); stroke-width:1; }
 .signature-bloom{ position:absolute; pointer-events:none; z-index:0; }
 
+.cross-mark{
+  width:13px; height:20px;
+  display:inline-block; vertical-align:middle;
+  margin-left:1px; margin-bottom:14px;
+  fill:var(--bark);
+  transform:rotate(38deg);
+}
+
 /* ---------------- richer ornament: gradient floral cluster + heart ---------------- */
 .stop-tan{ stop-color:var(--tan); }
 .stop-honey{ stop-color:var(--honey); }
