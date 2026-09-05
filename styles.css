@@ -155,6 +155,37 @@ html.opened #dotnav{ opacity:1; pointer-events:auto; }
 #dotnav button.active{ background:var(--honey); width:9px; height:9px; }
 #dotnav button:focus-visible{ outline:2px solid var(--honey); outline-offset:3px; }
 
+/* ---------------- floating audio visualizer ---------------- */
+.audio-fab{
+  position:fixed; right:20px; bottom:22px; z-index:55;
+  width:64px; height:64px; padding:0; border-radius:50%;
+  border:1.5px solid var(--honey);
+  background:radial-gradient(circle at 34% 30%, var(--ivory) 0%, var(--tan-bg) 100%);
+  box-shadow:0 14px 30px -12px rgba(31,51,40,.5);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; opacity:0; pointer-events:none;
+  transition:opacity .6s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+html.opened .audio-fab{ opacity:1; pointer-events:auto; }
+.audio-fab:hover{ transform:translateY(-2px); }
+.audio-fab:focus-visible{ outline:2px solid var(--honey); outline-offset:4px; }
+.audio-fab-canvas{ position:absolute; inset:0; width:100%; height:100%; }
+.audio-fab-icon{
+  position:relative; z-index:2; width:18px; height:18px;
+  stroke:var(--bark); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
+}
+.audio-fab-icon.icon-note{ fill:var(--bark); stroke:none; }
+.audio-fab-icon.icon-muted{ display:none; }
+.audio-fab.is-paused .icon-note{ display:none; }
+.audio-fab.is-paused .icon-muted{ display:block; }
+.audio-fab.is-paused .audio-fab-canvas{ opacity:.3; }
+.audio-fab.is-paused{ box-shadow:0 8px 18px -12px rgba(31,51,40,.4); }
+@keyframes audioFabGlow{
+  0%,100%{ box-shadow:0 14px 30px -12px rgba(31,51,40,.5); }
+  50%{ box-shadow:0 16px 36px -10px rgba(184,130,62,.6); }
+}
+.audio-fab:not(.is-paused){ animation:audioFabGlow 2.8s ease-in-out infinite; }
+
 /* ---------------- gate ---------------- */
 #gate{
   position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center;
@@ -369,4 +400,4 @@ form.rsvp-form{ text-align:left; margin-top:20px; display:flex; flex-direction:c
   .hero .roles{ margin-top:18px; }
   .hero-frame .signature-bloom.frame-bl,
   .hero-frame .signature-bloom.frame-br{ width:56px; }
-} 
+}
