@@ -441,11 +441,11 @@
   ScrollTrigger.observe({
     target: bookEl,
     type: 'wheel,touch',
-    wheelSpeed: 1,
+    wheelSpeed: -1,
     tolerance: 10,
-    ignore: carouselTrackEl,   // don't hijack the gallery's own horizontal drag
-    onUp: () => goToPage(currentIndex - 1),
-    onDown: () => goToPage(currentIndex + 1)
+    ignore: carouselTrackEl,
+    onUp: () => goToPage(currentIndex + 1),
+    onDown: () => goToPage(currentIndex - 1)
   });
 
   dots.forEach((d, i) => d.addEventListener('click', () => goToPage(i)));
