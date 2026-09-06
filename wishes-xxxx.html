@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wishes — Private</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wdth,wght@0,62.5,400;0,62.5,600&family=Niconne&display=swap" rel="stylesheet">
+<style>
+  :root{ --forest-deep:#2F4633; --honey:#B8823E; --bark:#5C3D28; --ivory:#FBF3E4; --ivory-deep:#F0E2C4; --white:#fff; }
+  *{box-sizing:border-box;}
+  body{margin:0;min-height:100vh;font-family:'Noto Serif',serif;background:radial-gradient(90% 70% at 50% 20%, var(--ivory) 0%, var(--ivory-deep) 100%);color:var(--forest-deep);padding:40px 20px;}
+  h1{font-family:'Niconne',cursive;font-weight:400;text-align:center;font-size:34px;margin-bottom:6px;}
+  .count{text-align:center;font-size:14px;opacity:.7;margin-bottom:28px;}
+  .wish{background:var(--white);border-radius:10px;padding:16px 18px;margin:0 auto 14px;max-width:560px;box-shadow:0 12px 28px -18px rgba(31,51,40,.3);}
+  .wish .who{font-weight:600;font-size:16px;}
+  .wish .attend{font-weight:400;opacity:.65;font-size:14px;}
+  .wish .msg{margin-top:6px;font-size:16px;color:var(--bark);line-height:1.5;}
+  .wish .time{margin-top:8px;font-size:12px;opacity:.5;}
+  .empty{text-align:center;opacity:.6;margin-top:60px;}
+</style>
+</head>
+<body>
+  <h1>Wishes &amp; RSVPs</h1>
+  <p class="count" id="count">Loading...</p>
+  <div id="list"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBA4pj2Ma90JSrizPHeFTiMmwn5kbq62tE",
+      authDomain: "wedding-e56c1.firebaseapp.com",
+      projectId: "wedding-e56c1",
+      storageBucket: "wedding-e56c1.firebasestorage.app",
+      messagingSenderId: "873555129157",
+      appId: "1:873555129157:web:6dbca0634fec747f98842c"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const list = document.getElementById('list');
+    const countEl = document.getElementById('count');
+    const q = query(collection(db, 'wishes'), orderBy('createdAt', 'desc'));
+
+    onSnapshot(q, (snap) => {
+      if (snap.empty) { list.innerHTML = '<p class="empty">No wishes yet.</p>'; countEl.textContent = '0 wishes'; return; }
+      countEl.textContent = snap.size + (snap.size === 1 ? ' wish' : ' wishes');
+      list.innerHTML = '';
+      snap.forEach(doc => {
+        const w = doc.data();
+        const time = w.createdAt ? w.createdAt.toDate().toLocaleString() : '';
+        const el = document.createElement('div');
+        el.className = 'wish';
+        el.innerHTML = `<div class="who">${escapeHtml(w.name)} <span class="attend">&middot; ${escapeHtml(w.attend || '')}</span></div>`
+          + (w.message ? `<div class="msg">${escapeHtml(w.message)}</div>` : '')
+          + `<div class="time">${time}</div>`;
+        list.appendChild(el);
+      });
+    });
+
+    function escapeHtml(str){ const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+  </script>
+</body>
+</html>
