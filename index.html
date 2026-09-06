@@ -290,7 +290,8 @@
         <label for="wAttend">Will you attend?</label>
         <select id="wAttend"><option>Joyfully accepts</option><option>Regretfully declines</option></select>
       </div>
-      <div class="field"><label for="wMsg">Leave a wish (optional)</label><textarea id="wMsg" placeholder="Write your message..."></textarea></div>
+      <div class="field"><label for="wMsg">Leave a wish (optional)</label><textarea id="wMsg" placeholder="Write your message..." maxlength="1000"></textarea></div>
+      <div id="wMsgCount" style="font-size:12px;opacity:.6;text-align:right;margin-top:2px;">0 / 1000</div>
       <button type="submit" class="btn btn--solid">Send Wishes</button>
     </form>
     <p class="wishes-empty" id="wishStatus" style="display:none;">Thank you — your wish has been sent! 💛</p>
@@ -375,10 +376,8 @@
     envelope.classList.add('opening');
     setTimeout(() => {
       document.getElementById('gate').classList.add('closed');
-      html.classList.remove('locked');
       html.classList.add('opened');
       setViewportHeight(); 
-      ScrollTrigger.refresh();
     }, 950);
   });
 
@@ -388,21 +387,19 @@
   }, { threshold: 0.2 });
   document.querySelectorAll('.reveal').forEach(el => revealIo.observe(el));
 
-  // ---- book page-flip (GSAP ScrollTrigger) ----
+  // ---- book page-flip (discrete: exactly one page per gesture) ----
   gsap.registerPlugin(ScrollTrigger);
-  ScrollTrigger.normalizeScroll({ momentum: () => 0 });
-  ScrollTrigger.config({ ignoreMobileResize: true });
 
   const dots = document.querySelectorAll('#dotnav button');
   const bookEl = document.getElementById('book');
   const pages = gsap.utils.toArray('.book > .slide');
+  const lastIndex = pages.length - 1;
 
-  // stack pages front-to-back in document order: page 1 on top, covering
-  // every page after it, until the timeline rotates it out of the way.
   pages.forEach((page, i) => { page.style.zIndex = pages.length - i; });
 
-  // only the page currently "on top" should be interactive/announced —
-  // stops clicks, wheel, and screen readers reaching pages stacked underneath.
+  let currentIndex = 0;
+  let animating = false;
+
   function setActivePage(i) {
     pages.forEach((p, idx) => {
       const isActive = idx === i;
@@ -413,39 +410,45 @@
   }
   setActivePage(0);
 
-  const flipTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: bookEl,
-      start: 'top top',
-      end: () => '+=' + (pages.length - 1) * window.innerHeight,
-      scrub: true,
-      snap: {
-        snapTo: 1 / (pages.length - 1),
-        delay: 0,
-        duration: 0.35,
-        ease: 'power1.out'
-      },
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      onUpdate(self) {
-        const active = Math.min(pages.length - 1, Math.round(self.progress * (pages.length - 1)));
-        setActivePage(active);
+  function goToPage(i) {
+    if (animating || i === currentIndex || i < 0 || i > lastIndex) return;
+    animating = true;
+    const dir = i > currentIndex ? 1 : -1;
+
+    let k = currentIndex;
+    while (k !== i) {
+      const next = k + dir;
+      const page = dir === 1 ? pages[k] : pages[next];
+      if (next === i) {
+        gsap.to(page, {
+          rotateX: dir === 1 ? 180 : 0,
+          duration: 0.6,
+          ease: 'power2.inOut',
+          onComplete() {
+            currentIndex = i;
+            setActivePage(currentIndex);
+            animating = false;
+          }
+        });
+      } else {
+        gsap.set(page, { rotateX: dir === 1 ? 180 : 0 }); // resolve skipped pages instantly (dot-nav jumps)
       }
+      k = next;
     }
+  }
+
+  const carouselTrackEl = document.getElementById('carouselTrack');
+  ScrollTrigger.observe({
+    target: bookEl,
+    type: 'wheel,touch,pointer',
+    wheelSpeed: 1,
+    tolerance: 10,
+    ignore: carouselTrackEl,   // don't hijack the gallery's own horizontal drag
+    onUp: () => goToPage(currentIndex - 1),
+    onDown: () => goToPage(currentIndex + 1)
   });
 
-  // one segment per page-turn: page[i] flips away (top hinge, -180deg)
-  // exactly as its 1-viewport-height slice of the pinned scroll passes.
-  pages.forEach((page, i) => {
-    if (i === pages.length - 1) return; // last page has nothing left to reveal
-    flipTl.to(page, { rotateX: 180, ease: 'none', duration: 1 }, i);
-  });
-
-  dots.forEach((d, i) => d.addEventListener('click', () => {
-    const st = flipTl.scrollTrigger;
-    window.scrollTo({ top: st.start + i * window.innerHeight, behavior: 'smooth' });
-  }));
+  dots.forEach((d, i) => d.addEventListener('click', () => goToPage(i)));
 
   // ---- live countdown ----
   const target = new Date('2026-09-22T10:00:00+08:00').getTime();
@@ -471,6 +474,13 @@
   // ---- guestbook (front-end only mock — no persistence yet) ----
   const wishForm = document.getElementById('wishForm');
   const wishStatus = document.getElementById('wishStatus');
+
+  const wMsg = document.getElementById('wMsg');
+  const wMsgCount = document.getElementById('wMsgCount');
+  wMsg.addEventListener('input', () => {
+    wMsgCount.textContent = `${wMsg.value.length} / 1000`;
+  });
+
   wishForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.getElementById('wName').value.trim();

@@ -98,8 +98,8 @@ svg.assets{ position:absolute; width:0; height:0; }
 /* .book is the GSAP ScrollTrigger pin target. perspective here is what
    gives the rotateX on its children actual 3D depth. */
 .book{
-  position:relative;
-  height: calc(var(--vh, 1vh) * 100);
+  position:fixed;
+  inset:0;
   perspective:2200px;
   perspective-origin:50% 50%;
 }
