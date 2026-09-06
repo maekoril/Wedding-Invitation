@@ -76,24 +76,16 @@ svg.assets{ position:absolute; width:0; height:0; }
   transform:rotate(38deg);
 }
 
-/* ---------------- richer ornament: gradient floral cluster + heart ---------------- */
-.stop-tan{ stop-color:var(--tan); }
-.stop-honey{ stop-color:var(--honey); }
-.stop-bark{ stop-color:var(--bark); }
-.petal-outer{ fill:url(#petGradOuter); }
-.petal-inner{ fill:url(#petGradInner); }
-.floral-center{ fill:var(--forest-deep); }
-.floral-leaf{ fill:var(--forest-deep); opacity:.85; }
-.heartmark path{ fill:var(--bark); }
-
+/* ---------------- corner ornaments: pampas floral (tl) + crescent roses (tr/bl) + hearts (br) ---------------- */
 .signature-floral{ position:absolute; pointer-events:none; z-index:0; width:92px; opacity:.92; }
 .signature-floral.pos-tl{ top:16px; left:16px; }
-.signature-floral.pos-tr{ top:16px; right:16px; transform:scaleX(-1); }
-.signature-heart{ position:absolute; pointer-events:none; z-index:0; width:32px; opacity:.55; }
-.signature-heart.pos-br{ bottom:20px; right:22px; }
-.signature-heart.pos-bl{ bottom:20px; left:22px; }
-.slide--dark .signature-floral{ opacity:.6; }
-.slide--dark .signature-heart{ opacity:.4; }
+
+.corner-crescent{ position:absolute; pointer-events:none; z-index:0; width:120px; }
+.corner-crescent.pos-tr{ top:16px; right:16px; transform:rotate(180deg); }
+.corner-crescent.pos-bl{ bottom:16px; left:16px; }
+
+.corner-heart{ position:absolute; pointer-events:none; z-index:0; width:46px; }
+.corner-heart.pos-br{ bottom:20px; right:22px; }
 
 /* subtle linen dot texture on light slides */
 .texture::before{
@@ -107,7 +99,7 @@ svg.assets{ position:absolute; width:0; height:0; }
    gives the rotateX on its children actual 3D depth. */
 .book{
   position:relative;
-  height:100svh;
+  height: calc(var(--vh, 1vh) * 100);
   perspective:2200px;
   perspective-origin:50% 50%;
 }
@@ -278,7 +270,7 @@ html.opened .audio-fab{ opacity:1; pointer-events:auto; }
 .sched-card + .sched-card{ margin-top:18px; padding-top:18px; border-top:1px dashed rgba(92,61,40,.3); }
 .sched-card .kind{ font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--honey); font-weight:600; margin-bottom:6px; }
 .sched-card .time{ font-family:'Space Mono',monospace; font-size:27px; font-weight:700; color:var(--forest-deep); }
-.sched-card .venue{ font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:500; margin-top:8px; color:var(--forest-deep); }
+.sched-card .venue{ font-family:'Niconne',cursive; font-size:20px; font-weight:400; margin-top:8px; color:var(--forest-deep); }
 .sched-card .addr{ font-size:16px; color:var(--bark); margin-top:2px; opacity:.85; }
 
 /* ---------------- dress code / palette ---------------- */
