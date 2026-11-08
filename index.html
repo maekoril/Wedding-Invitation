@@ -468,8 +468,8 @@
     document.getElementById('cdMins').textContent = String(m).padStart(2,'0');
     document.getElementById('cdSecs').textContent = String(s).padStart(2,'0');
   }
-  tick();
   const timer = setInterval(tick, 1000);
+  tick();
 
   // ---- guestbook (front-end only mock — no persistence yet) ----
   const wishForm = document.getElementById('wishForm');
